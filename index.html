@@ -1,11 +1,14 @@
 <!doctype html>
-<html lang="ms">
+<html lang="ms-MY">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Slide Akmal V1</title>
-  <meta name="description" content="Template pembentangan baharu dengan gaya Custom Gemini AUD untuk Slide Akmal V1.">
+  <meta name="description" content="Templat pembentangan baharu dalam Bahasa Melayu Malaysia dengan gaya Custom Gemini AUD untuk Slide Akmal V1.">
   <link rel="icon" href="assets/jata-negara.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
       color-scheme: light;
@@ -29,7 +32,7 @@
       --max-slide: 1180px;
       --topbar-h: 72px;
       --controls-h: 72px;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: "Plus Jakarta Sans", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     * {
@@ -47,6 +50,7 @@
         linear-gradient(180deg, var(--page) 0%, #f6fbff 54%, var(--bg) 100%);
       color: var(--text);
       overflow: hidden;
+      text-rendering: geometricPrecision;
     }
 
     body::before {
@@ -332,23 +336,24 @@
     .slide-title {
       margin: 0;
       color: #0b1726;
-      font-size: clamp(2rem, 5.1vw, 4.85rem);
-      line-height: 0.96;
+      font-size: clamp(2.12rem, 4.9vw, 4.55rem);
+      line-height: 0.98;
       font-weight: 900;
       letter-spacing: 0;
+      text-wrap: balance;
     }
 
     .slide-title.small {
-      font-size: clamp(1.82rem, 3.65vw, 3.45rem);
-      line-height: 1.02;
+      font-size: clamp(1.78rem, 3.42vw, 3.22rem);
+      line-height: 1.04;
     }
 
     .lead {
       max-width: 780px;
       margin: 0;
       color: var(--muted);
-      font-size: clamp(1rem, 1.55vw, 1.3rem);
-      line-height: 1.5;
+      font-size: clamp(1.02rem, 1.46vw, 1.22rem);
+      line-height: 1.52;
       font-weight: 650;
     }
 
@@ -884,9 +889,9 @@
       <section class="slide cover-slide" aria-labelledby="slide-1-title">
         <div class="slide-content split-layout">
           <div>
-            <p class="slide-kicker">Template pembentangan baharu dengan gaya Custom Gemini AUD</p>
+            <p class="slide-kicker">Templat pembentangan baharu dengan gaya Custom Gemini AUD</p>
             <h1 class="slide-title" id="slide-1-title">Slide Akmal V1</h1>
-            <p class="lead">Deck asas untuk pembentangan baru yang boleh terus dipublish sebagai live page GitHub Pages.</p>
+            <p class="lead">Set slaid asas untuk pembentangan baharu yang boleh diterbitkan sebagai halaman langsung GitHub Pages dengan bahasa yang kemas.</p>
             <p class="presenter-line">Pembentangan oleh Mohamad Nurakmal bin Ab Rasid.</p>
             <div class="gemini-tools" aria-label="Status gaya">
               <span class="gemini-badge">
@@ -903,7 +908,7 @@
             </div>
             <div class="portrait-meta">
               <strong>Mohamad Nurakmal bin Ab Rasid</strong>
-              <span>Slide interaktif, ringkas, dan sedia live page</span>
+              <span>Slaid interaktif, ringkas dan sedia untuk halaman langsung</span>
             </div>
           </aside>
         </div>
@@ -913,8 +918,8 @@
         <div class="slide-content stack-layout">
           <div>
             <p class="slide-kicker">Matlamat</p>
-            <h2 class="slide-title small" id="slide-2-title">Apa yang deck ini perlu capai?</h2>
-            <p class="lead">Versi pertama ini memberi rangka pembentangan yang kemas supaya kandungan sebenar boleh diganti dengan cepat tanpa bina semula gaya.</p>
+            <h2 class="slide-title small" id="slide-2-title">Apakah hasil yang ingin dicapai?</h2>
+            <p class="lead">Versi pertama ini menyediakan rangka pembentangan yang tersusun supaya kandungan sebenar dapat dimasukkan dengan mudah tanpa mengubah semula gaya visual.</p>
           </div>
           <div class="metric-grid">
             <article class="metric-card">
@@ -924,13 +929,13 @@
             </article>
             <article class="metric-card">
               <span>Format</span>
-              <strong>12 slide</strong>
+              <strong>12 slaid</strong>
               <p>Cukup panjang untuk naratif lengkap, masih ringkas untuk latihan atau taklimat.</p>
             </article>
             <article class="metric-card">
-              <span>Live</span>
+              <span>Terbitan</span>
               <strong>Pages</strong>
-              <p>Statik, pantas, dan sesuai untuk GitHub Pages public repo.</p>
+              <p>Statik, pantas dan sesuai untuk repositori awam GitHub Pages.</p>
             </article>
           </div>
         </div>
@@ -941,13 +946,13 @@
           <div>
             <p class="slide-kicker">Konteks</p>
             <h2 class="slide-title small" id="slide-3-title">Masalah yang perlu diselesaikan</h2>
-            <p class="lead">Bila slide dibuat cepat, rupa sering tidak seragam. Deck ini jadi rangka awal yang ada struktur, gerak, dan bahasa visual yang konsisten.</p>
+            <p class="lead">Apabila slaid disediakan dalam tempoh yang singkat, rupa dan nada sering menjadi tidak seragam. Set ini menjadi rangka awal yang mempunyai struktur, gerak dan bahasa visual yang konsisten.</p>
           </div>
           <div class="content-card">
             <ol class="number-list">
               <li>Kekalkan gaya UAD Custom Gemini yang sudah dikenali.</li>
               <li>Buka ruang untuk tajuk, objektif, proses, dapatan, dan tindakan.</li>
-              <li>Pastikan setiap slide muat dalam viewport tanpa scroll dokumen.</li>
+              <li>Pastikan setiap slaid muat dalam ruang paparan tanpa tatalan dokumen.</li>
             </ol>
           </div>
         </div>
@@ -989,7 +994,7 @@
           <div>
             <p class="slide-kicker">Struktur</p>
             <h2 class="slide-title small" id="slide-5-title">Rangka isi yang boleh terus diganti</h2>
-            <p class="lead">Gunakan format ini untuk mana-mana topik baru: tajuk, objektif, konteks, proses, dapatan, tindakan, dan penutup.</p>
+            <p class="lead">Gunakan format ini untuk mana-mana topik baharu: tajuk, objektif, konteks, proses, dapatan, tindakan dan penutup.</p>
           </div>
           <div class="content-card">
             <ul class="check-list">
@@ -1008,7 +1013,7 @@
           <div>
             <p class="slide-kicker">Gaya visual</p>
             <h2 class="slide-title small" id="slide-6-title">DNA Custom Gemini AUD yang dikekalkan</h2>
-            <p class="lead">Latar putih benar, grid biru halus, aksen emas, panel kaca lembut, radius 8px, dan kawalan slide yang stabil.</p>
+            <p class="lead">Latar putih sebenar, grid biru halus, aksen emas, panel kaca lembut, bucu 8px dan kawalan slaid yang stabil.</p>
           </div>
           <div class="metric-grid">
             <article class="metric-card">
@@ -1035,11 +1040,11 @@
           <div>
             <p class="slide-kicker">Prompt ringkas</p>
             <h2 class="slide-title small" id="slide-7-title">Contoh nota yang boleh disalin</h2>
-            <p class="lead">Bahagian ini berguna jika slide nanti mahu disambungkan dengan proses kerja Gemini atau penyediaan nota pembentangan.</p>
-            <button class="copy-button" type="button" data-copy-target="prompt-utama">Salin prompt utama</button>
+            <p class="lead">Bahagian ini berguna sekiranya slaid ini kemudian ingin disambungkan dengan proses kerja Gemini atau penyediaan nota pembentangan.</p>
+            <button class="copy-button" type="button" data-copy-target="prompt-utama">Salin arahan utama</button>
           </div>
           <div class="prompt-box">
-            <pre id="prompt-utama">Sila bantu susun kandungan pembentangan ini kepada 12 slide ringkas. Kekalkan nada profesional Bahasa Melayu Malaysia, fokus kepada satu mesej utama setiap slide, dan cadangkan poin tindakan yang jelas pada akhir deck.</pre>
+            <pre id="prompt-utama">Sila bantu susun kandungan pembentangan ini kepada 12 slaid ringkas. Kekalkan Bahasa Melayu Malaysia dengan ayat yang tertib, jelas dan diplomatik. Fokus kepada satu mesej utama bagi setiap slaid, kemudian cadangkan tindakan susulan yang sesuai pada bahagian akhir.</pre>
           </div>
         </div>
       </section>
@@ -1066,7 +1071,7 @@
           <div>
             <p class="slide-kicker">Keputusan</p>
             <h2 class="slide-title small" id="slide-9-title">Apa yang perlu diputuskan?</h2>
-            <p class="lead">Slide ini boleh digunakan untuk meminta persetujuan, memilih cadangan, mengesahkan tindakan, atau menandakan risiko yang perlu dipantau.</p>
+            <p class="lead">Slaid ini boleh digunakan untuk mendapatkan persetujuan, memilih cadangan, mengesahkan tindakan atau menandakan risiko yang wajar dipantau.</p>
           </div>
           <div class="flow-line">
             <article class="flow-step">
@@ -1104,8 +1109,8 @@
             <ul class="check-list">
               <li>Sahkan tajuk dan kandungan sebenar yang akan dimasukkan.</li>
               <li>Kemas kini setiap placeholder dengan maklumat projek.</li>
-              <li>Push semula ke GitHub supaya live page terkini.</li>
-              <li>Semak paparan desktop dan mobile sebelum kongsi pautan.</li>
+              <li>Hantar semula perubahan ke GitHub supaya halaman langsung sentiasa terkini.</li>
+              <li>Semak paparan komputer dan telefon sebelum pautan dikongsi.</li>
             </ul>
           </div>
         </div>
@@ -1115,16 +1120,16 @@
         <div class="slide-content split-layout">
           <div>
             <p class="slide-kicker">Semakan akhir</p>
-            <h2 class="slide-title small" id="slide-11-title">Checklist sebelum dikongsi</h2>
-            <button class="copy-button" type="button" data-copy-target="checklist-final">Salin checklist</button>
+            <h2 class="slide-title small" id="slide-11-title">Senarai semak sebelum dikongsi</h2>
+            <button class="copy-button" type="button" data-copy-target="checklist-final">Salin senarai semak</button>
           </div>
           <div class="prompt-box">
             <pre id="checklist-final">1. Tajuk slide tepat.
 2. Nama pembentang betul.
 3. Semua placeholder sudah diganti.
-4. Slide tidak melimpah keluar viewport.
-5. Link GitHub Pages boleh dibuka.
-6. Semak keyboard ArrowRight, ArrowLeft, Home, dan End.</pre>
+4. Slaid tidak melimpah keluar ruang paparan.
+5. Pautan GitHub Pages boleh dibuka.
+6. Semak papan kekunci Kanan, Kiri, Home, dan End.</pre>
           </div>
         </div>
       </section>
@@ -1133,8 +1138,8 @@
         <div class="slide-content stack-layout">
           <div>
             <p class="slide-kicker">Penutup</p>
-            <h2 class="slide-title small" id="slide-12-title">Slide Akmal V1 sedia untuk iterasi kandungan</h2>
-            <p class="lead">Repo dan live page menjadi asas. Fasa seterusnya hanya perlu ganti isi slide mengikut topik sebenar.</p>
+            <h2 class="slide-title small" id="slide-12-title">Slide Akmal V1 sedia untuk kemas kini kandungan</h2>
+            <p class="lead">Repositori dan halaman langsung ini menjadi asas. Fasa seterusnya hanya perlu menggantikan isi slaid mengikut topik sebenar.</p>
           </div>
           <div class="note-strip">
             Pautan live dijangka: https://akmal4244.github.io/SlideAkmalV1/
@@ -1144,7 +1149,7 @@
     </main>
 
     <footer class="controls">
-      <span class="deck-hint">Keyboard: ArrowRight, ArrowLeft, Home, End</span>
+      <span class="deck-hint">Papan kekunci: Kanan, Kiri, Home, End</span>
       <div class="control-group">
         <button class="nav-button" id="prevBtn" type="button" aria-label="Slide sebelum" title="Slide sebelum">
           <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="m15 18-6-6 6-6"/></svg>
@@ -1156,7 +1161,7 @@
           <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="m9 18 6-6-6-6"/></svg>
         </button>
       </div>
-      <a class="live-link" href="https://akmal4244.github.io/SlideAkmalV1/">GitHub Pages</a>
+      <a class="live-link" href="https://akmal4244.github.io/SlideAkmalV1/">Halaman langsung</a>
     </footer>
   </div>
 
@@ -1344,7 +1349,7 @@
 
     async function toggleFullscreen() {
       if (!supportsFullscreen()) {
-        showToast("Fullscreen tidak disokong oleh browser ini.");
+        showToast("Skrin penuh tidak disokong oleh pelayar ini.");
         return;
       }
 
@@ -1355,7 +1360,7 @@
           await requestDeckFullscreen();
         }
       } catch (error) {
-        showToast("Fullscreen tidak dapat diaktifkan. Cuba tekan F11.");
+        showToast("Skrin penuh tidak dapat diaktifkan. Sila cuba tekan F11.");
       } finally {
         updateFullscreenButton();
       }
@@ -1411,8 +1416,8 @@
     }
     if (!supportsFullscreen()) {
       fullscreenBtn.disabled = true;
-      fullscreenBtn.title = "Fullscreen tidak disokong";
-      fullscreenBtn.setAttribute("aria-label", "Fullscreen tidak disokong");
+      fullscreenBtn.title = "Skrin penuh tidak disokong";
+      fullscreenBtn.setAttribute("aria-label", "Skrin penuh tidak disokong");
     }
     updateFullscreenButton();
     render();

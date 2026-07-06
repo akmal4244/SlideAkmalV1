@@ -24,11 +24,16 @@ const htmlBodyBlock = html.match(/html,\s*\n\s*body\s*{[^}]*}/)?.[0] ?? "";
 const slideBlock = html.match(/\.slide\s*{[^}]*}/)?.[0] ?? "";
 
 assert.equal((html.match(/<section class="slide/g) || []).length, 12, "deck should contain 12 slides");
+assert.match(html, /<html lang="ms-MY">/);
 assert.match(html, /<title>Slide Akmal V1<\/title>/);
 assert.match(html, /<h1 class="slide-title" id="slide-1-title">Slide Akmal V1<\/h1>/);
-assert.match(html, /Template pembentangan baharu dengan gaya Custom Gemini AUD/);
+assert.match(html, /Templat pembentangan baharu dengan gaya Custom Gemini AUD/);
+assert.match(html, /Bahasa Melayu Malaysia/);
+assert.match(html, /ayat yang tertib, jelas dan diplomatik/);
 assert.match(html, /Pembentangan oleh Mohamad Nurakmal bin Ab Rasid\./);
 assert.match(html, /aria-label="Slide Akmal V1"/);
+assert.match(html, /fonts\.googleapis\.com\/css2\?family=Plus\+Jakarta\+Sans/);
+assert.match(html, /font-family:\s*"Plus Jakarta Sans"/);
 assert.match(html, /assets\/jata-negara\.svg/);
 assert.match(html, /assets\/mohamad-nurakmal\.png/);
 assert.match(html, /class="brand-logo"/);
@@ -49,6 +54,8 @@ assert.match(html, /--controls-h:\s*72px/, "deck should reserve a stable control
 assert.match(html, /height:\s*100svh/, "app shell should lock to the browser viewport height");
 assert.match(html, /height:\s*calc\(100svh - var\(--topbar-h\) - var\(--controls-h\)\)/, "deck should fill the remaining viewport height");
 assert.match(html, /\.slide\s*{[\s\S]*?height:\s*100%;[\s\S]*?min-height:\s*0;[\s\S]*?overflow:\s*hidden;/, "each slide should be viewport-contained");
+assert.match(html, /\.slide-title\s*{[\s\S]*?text-wrap:\s*balance;/, "slide headings should use balanced wrapping");
+assert.match(html, /\.lead\s*{[\s\S]*?font-size:\s*clamp\(1\.02rem,\s*1\.46vw,\s*1\.22rem\)/, "lead copy should use a polished presentation scale");
 assert.match(htmlBodyBlock, /overflow:\s*hidden;/, "body should remain viewport-locked");
 assert.doesNotMatch(slideBlock, /min-height:\s*auto;/, "base slides must stay constrained to the viewport");
 assert.doesNotMatch(html, /@media[\s\S]*?\.slide\s*{\s*min-height:\s*auto;/, "mobile slides must stay constrained to the viewport");
@@ -62,8 +69,13 @@ assert.ok((html.match(/data-copy-target/g) || []).length >= 2, "copy buttons sho
 assert.match(html, /navigator\.clipboard\.writeText/);
 assert.match(html, /navigator\.clipboard && window\.isSecureContext/, "copy should guard Clipboard API availability before writeText");
 assert.match(html, /document\.execCommand\("copy"\)/, "copy should include textarea fallback");
+assert.match(html, /Papan kekunci: Kanan, Kiri, Home, End/);
+assert.doesNotMatch(html, />[^<]*(Keyboard|live page|Deck asas|Template pembentangan|public repo|Checklist sebelum|Link GitHub Pages)[^<]*</, "visible copy should be Malay Malaysia first");
+assert.doesNotMatch(readme, /\bdeck\b|keyboard|fullscreen|layout|viewport|push|branch|live page/i, "README should avoid unnecessary English terms");
 
 assert.match(readme, /^# SlideAkmalV1/m);
 assert.match(readme, /Slide Akmal V1/);
 assert.match(readme, /https:\/\/akmal4244\.github\.io\/SlideAkmalV1\//);
+assert.match(readme, /Bahasa Melayu Malaysia/);
+assert.match(readme, /ayat diplomatik/);
 assert.match(readme, /GitHub Pages/);
