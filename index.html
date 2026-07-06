@@ -1,0 +1,1421 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Slide Akmal V1</title>
+  <meta name="description" content="Template pembentangan baharu dengan gaya Custom Gemini AUD untuk Slide Akmal V1.">
+  <link rel="icon" href="assets/jata-negara.svg" type="image/svg+xml">
+  <style>
+    :root {
+      color-scheme: light;
+      --page: #ffffff;
+      --bg: #eef7ff;
+      --bg-2: #dff1ff;
+      --panel: rgba(255, 255, 255, 0.86);
+      --panel-strong: rgba(255, 255, 255, 0.96);
+      --line: rgba(15, 76, 129, 0.14);
+      --line-strong: rgba(14, 165, 233, 0.42);
+      --text: #0b1726;
+      --muted: #475569;
+      --soft: #7890a8;
+      --cyan: #0ea5e9;
+      --blue: #2563eb;
+      --gold: #c88719;
+      --green: #0f9f6e;
+      --danger: #dc2626;
+      --shadow: 0 30px 80px rgba(15, 23, 42, 0.13);
+      --radius: 8px;
+      --max-slide: 1180px;
+      --topbar-h: 72px;
+      --controls-h: 72px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      background:
+        linear-gradient(120deg, rgba(14, 165, 233, 0.12), transparent 32%),
+        linear-gradient(315deg, rgba(200, 135, 25, 0.09), transparent 28%),
+        linear-gradient(180deg, var(--page) 0%, #f6fbff 54%, var(--bg) 100%);
+      color: var(--text);
+      overflow: hidden;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      content: "";
+      background-image:
+        linear-gradient(rgba(37, 99, 235, 0.065) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(14, 165, 233, 0.055) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.92), transparent 86%);
+      animation: gridDrift 18s linear infinite;
+    }
+
+    body::after {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      content: "";
+      background:
+        linear-gradient(135deg, transparent 0 58%, rgba(14, 165, 233, 0.1) 58.2% 58.7%, transparent 58.9%),
+        linear-gradient(135deg, transparent 0 70%, rgba(200, 135, 25, 0.12) 70.1% 70.45%, transparent 70.8%);
+      opacity: 0.9;
+    }
+
+    @keyframes gridDrift {
+      from { background-position: 0 0, 0 0; }
+      to { background-position: 44px 44px, 44px 44px; }
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .app {
+      position: relative;
+      z-index: 1;
+      height: 100svh;
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: var(--topbar-h) minmax(0, 1fr) var(--controls-h);
+    }
+
+    .progress-track {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 20;
+      width: 100%;
+      height: 5px;
+      background: rgba(15, 76, 129, 0.1);
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      position: relative;
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--cyan), var(--gold));
+      box-shadow: 0 0 28px rgba(14, 165, 233, 0.24);
+      transition: width 220ms ease;
+    }
+
+    .progress-bar::after {
+      position: absolute;
+      inset: 0;
+      content: "";
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+      transform: translateX(-100%);
+      animation: progressSheen 2.6s ease-in-out infinite;
+    }
+
+    @keyframes progressSheen {
+      0%, 35% { transform: translateX(-100%); }
+      65%, 100% { transform: translateX(120%); }
+    }
+
+    .deck-topbar {
+      height: var(--topbar-h);
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(310px, 0.95fr) minmax(260px, 1.35fr) minmax(140px, 0.7fr);
+      align-items: center;
+      gap: 16px;
+      padding: 18px clamp(18px, 4vw, 52px) 10px;
+      border-bottom: 1px solid rgba(15, 76, 129, 0.08);
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      color: #174569;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .brand-name {
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: inline-grid;
+      place-items: center;
+      flex: 0 0 auto;
+      padding: 4px;
+      border: 1px solid rgba(200, 135, 25, 0.22);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    .brand-logo {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 3px rgba(15, 23, 42, 0.12));
+    }
+
+    .slide-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .slide-dot {
+      width: 26px;
+      height: 26px;
+      display: inline-grid;
+      place-items: center;
+      border: 1px solid rgba(15, 76, 129, 0.13);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      color: #64748b;
+      font-size: 0.74rem;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+      transition: transform 160ms ease, color 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .slide-dot:hover,
+    .slide-dot:focus-visible {
+      border-color: rgba(14, 165, 233, 0.55);
+      color: var(--blue);
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    .slide-dot.is-active {
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: #ffffff;
+      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.2);
+    }
+
+    .counter-pill {
+      justify-self: end;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border: 1px solid rgba(15, 76, 129, 0.1);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.7);
+      color: #174569;
+      font-size: 0.82rem;
+      font-weight: 800;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+      white-space: nowrap;
+    }
+
+    .counter-pill::before {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--green);
+      content: "";
+      box-shadow: 0 0 0 4px rgba(15, 159, 110, 0.12);
+    }
+
+    .deck-shell {
+      height: calc(100svh - var(--topbar-h) - var(--controls-h));
+      min-height: 0;
+      padding: clamp(16px, 2.6vw, 30px) clamp(18px, 4vw, 52px);
+      display: grid;
+      place-items: center;
+    }
+
+    .slide {
+      width: min(var(--max-slide), 100%);
+      height: 100%;
+      min-height: 0;
+      overflow: hidden;
+      display: none;
+      position: relative;
+      isolation: isolate;
+      border: 1px solid rgba(15, 76, 129, 0.1);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(150deg, rgba(255, 255, 255, 0.94), rgba(236, 249, 255, 0.78)),
+        linear-gradient(330deg, rgba(200, 135, 25, 0.08), transparent 42%);
+      box-shadow: var(--shadow);
+    }
+
+    .slide.is-active {
+      display: grid;
+      animation: slideIn 420ms cubic-bezier(0.19, 1, 0.22, 1) both;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(14px) scale(0.99); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .slide::before {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      content: "";
+      background:
+        radial-gradient(circle at 12% 14%, rgba(14, 165, 233, 0.12), transparent 24%),
+        radial-gradient(circle at 90% 86%, rgba(200, 135, 25, 0.11), transparent 25%);
+    }
+
+    .slide::after {
+      position: absolute;
+      right: -7%;
+      bottom: -9%;
+      z-index: -1;
+      width: 36%;
+      aspect-ratio: 1;
+      border: 1px solid rgba(14, 165, 233, 0.18);
+      border-radius: 999px;
+      content: "";
+      background: repeating-conic-gradient(from 12deg, rgba(37, 99, 235, 0.08) 0 7deg, transparent 7deg 18deg);
+      opacity: 0.55;
+    }
+
+    .slide-content {
+      min-height: 0;
+      padding: clamp(28px, 4.4vw, 58px);
+      display: grid;
+      gap: clamp(18px, 2.2vw, 28px);
+      align-content: center;
+    }
+
+    .split-layout {
+      grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.82fr);
+      align-items: center;
+    }
+
+    .stack-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .slide-kicker {
+      margin: 0;
+      color: #174569;
+      font-size: clamp(0.76rem, 1vw, 0.9rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .slide-title {
+      margin: 0;
+      color: #0b1726;
+      font-size: clamp(2rem, 5.1vw, 4.85rem);
+      line-height: 0.96;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .slide-title.small {
+      font-size: clamp(1.82rem, 3.65vw, 3.45rem);
+      line-height: 1.02;
+    }
+
+    .lead {
+      max-width: 780px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.55vw, 1.3rem);
+      line-height: 1.5;
+      font-weight: 650;
+    }
+
+    .presenter-line {
+      margin: 0;
+      color: #174569;
+      font-size: clamp(0.92rem, 1.25vw, 1.04rem);
+      line-height: 1.45;
+      font-weight: 780;
+    }
+
+    .gemini-tools {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .gemini-badge,
+    .copy-button {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(14, 165, 233, 0.22);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.74);
+      color: #174569;
+      font-size: 0.88rem;
+      font-weight: 850;
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
+    }
+
+    .gemini-badge {
+      padding: 9px 13px;
+      animation: geminiFloat 5.5s ease-in-out infinite;
+    }
+
+    .copy-button {
+      padding: 9px 14px;
+      cursor: pointer;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .copy-button:hover,
+    .copy-button:focus-visible {
+      outline: none;
+      transform: translateY(-1px);
+      border-color: rgba(37, 99, 235, 0.44);
+      background: rgba(255, 255, 255, 0.94);
+    }
+
+    .gemini-mark {
+      width: 18px;
+      height: 18px;
+      display: inline-grid;
+      place-items: center;
+      flex: 0 0 auto;
+      color: var(--gold);
+      animation: geminiTwinkle 2.8s ease-in-out infinite;
+    }
+
+    .gemini-mark svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    @keyframes geminiFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    @keyframes geminiTwinkle {
+      0%, 100% { opacity: 0.75; transform: rotate(0deg) scale(0.92); }
+      50% { opacity: 1; transform: rotate(10deg) scale(1.12); }
+    }
+
+    .portrait-card {
+      align-self: stretch;
+      min-height: 0;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      gap: 14px;
+      padding: 18px;
+      border: 1px solid rgba(15, 76, 129, 0.12);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.74);
+      box-shadow: 0 20px 48px rgba(15, 23, 42, 0.1);
+    }
+
+    .portrait-frame {
+      min-height: 0;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(14, 165, 233, 0.12), rgba(200, 135, 25, 0.12));
+    }
+
+    .portrait-photo {
+      width: 100%;
+      height: 100%;
+      min-height: 260px;
+      display: block;
+      object-fit: cover;
+      object-position: center top;
+      animation: portraitFloat 7s ease-in-out infinite;
+    }
+
+    @keyframes portraitFloat {
+      0%, 100% { transform: scale(1.01) translateY(0); }
+      50% { transform: scale(1.035) translateY(-5px); }
+    }
+
+    .portrait-meta {
+      display: grid;
+      gap: 3px;
+    }
+
+    .portrait-meta strong {
+      color: #0b1726;
+      font-size: 1.03rem;
+      line-height: 1.2;
+    }
+
+    .portrait-meta span {
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .content-card,
+    .metric-card,
+    .prompt-box {
+      border: 1px solid rgba(15, 76, 129, 0.12);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.76);
+      box-shadow: 0 16px 38px rgba(15, 23, 42, 0.08);
+    }
+
+    .content-card {
+      padding: clamp(18px, 2.2vw, 28px);
+    }
+
+    .number-list,
+    .check-list {
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+      list-style: none;
+    }
+
+    .number-list {
+      counter-reset: slideSteps;
+    }
+
+    .number-list li,
+    .check-list li {
+      position: relative;
+      min-height: 48px;
+      padding: 13px 14px 13px 56px;
+      border: 1px solid rgba(15, 76, 129, 0.09);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.72);
+      color: #1f3550;
+      font-size: clamp(0.88rem, 1.1vw, 1.02rem);
+      line-height: 1.38;
+      font-weight: 720;
+    }
+
+    .number-list li::before {
+      counter-increment: slideSteps;
+      content: counter(slideSteps, decimal-leading-zero);
+      position: absolute;
+      left: 13px;
+      top: 12px;
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 900;
+    }
+
+    .check-list li::before {
+      position: absolute;
+      left: 17px;
+      top: 15px;
+      width: 22px;
+      height: 22px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: rgba(15, 159, 110, 0.12);
+      color: var(--green);
+      content: "✓";
+      font-weight: 900;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .metric-card {
+      min-height: 132px;
+      padding: 18px;
+      display: grid;
+      align-content: space-between;
+    }
+
+    .metric-card span {
+      color: #174569;
+      font-size: 0.76rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .metric-card strong {
+      color: #0b1726;
+      font-size: clamp(1.42rem, 2.55vw, 2.35rem);
+      line-height: 1;
+    }
+
+    .metric-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.42;
+      font-weight: 650;
+    }
+
+    .flow-line {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .flow-step {
+      min-height: 150px;
+      padding: 16px;
+      border: 1px solid rgba(15, 76, 129, 0.12);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.76);
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.07);
+    }
+
+    .flow-step span {
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .flow-step strong {
+      display: block;
+      margin-top: 8px;
+      color: #0b1726;
+      font-size: 1.12rem;
+      line-height: 1.18;
+    }
+
+    .flow-step p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.42;
+      font-weight: 650;
+    }
+
+    .prompt-box {
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .prompt-box pre {
+      max-height: 190px;
+      margin: 0;
+      overflow: auto;
+      white-space: pre-wrap;
+      color: #102235;
+      font-size: clamp(0.78rem, 1vw, 0.92rem);
+      line-height: 1.52;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-weight: 680;
+    }
+
+    .note-strip {
+      padding: 14px 16px;
+      border-left: 4px solid var(--gold);
+      border-radius: var(--radius);
+      background: rgba(200, 135, 25, 0.1);
+      color: #5f4213;
+      font-size: clamp(0.86rem, 1.05vw, 0.98rem);
+      line-height: 1.45;
+      font-weight: 760;
+    }
+
+    .controls {
+      height: var(--controls-h);
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      gap: 14px;
+      padding: 10px clamp(18px, 4vw, 52px) 18px;
+      border-top: 1px solid rgba(15, 76, 129, 0.08);
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(18px);
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .nav-button,
+    .fullscreen-button {
+      min-width: 44px;
+      height: 44px;
+      display: inline-grid;
+      place-items: center;
+      border: 1px solid rgba(15, 76, 129, 0.13);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.8);
+      color: #174569;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.07);
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease, color 160ms ease;
+    }
+
+    .nav-button:hover,
+    .nav-button:focus-visible,
+    .fullscreen-button:hover,
+    .fullscreen-button:focus-visible {
+      outline: none;
+      transform: translateY(-1px);
+      border-color: rgba(14, 165, 233, 0.5);
+      color: var(--blue);
+      background: #ffffff;
+    }
+
+    .nav-button:disabled,
+    .fullscreen-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.42;
+      transform: none;
+    }
+
+    .deck-hint {
+      justify-self: start;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 750;
+    }
+
+    .live-link {
+      justify-self: end;
+      color: #174569;
+      font-size: 0.82rem;
+      font-weight: 820;
+      text-decoration: none;
+    }
+
+    .live-link:hover,
+    .live-link:focus-visible {
+      color: var(--blue);
+      outline: none;
+      text-decoration: underline;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: calc(var(--controls-h) + 18px);
+      z-index: 50;
+      padding: 11px 14px;
+      border: 1px solid rgba(15, 76, 129, 0.13);
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.88);
+      color: #ffffff;
+      font-size: 0.86rem;
+      font-weight: 760;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 10px);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    @media (max-width: 920px) {
+      .deck-topbar {
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+      }
+
+      .slide-dots {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 2px;
+      }
+
+      .counter-pill {
+        justify-self: end;
+      }
+
+      .split-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .portrait-card {
+        display: none;
+      }
+
+      .flow-line,
+      .metric-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      :root {
+        --topbar-h: 96px;
+        --controls-h: 86px;
+      }
+
+      .deck-topbar {
+        padding: 12px 14px 8px;
+      }
+
+      .brand {
+        font-size: 0.72rem;
+      }
+
+      .brand-mark {
+        width: 32px;
+        height: 32px;
+      }
+
+      .counter-pill {
+        padding: 8px 10px;
+        font-size: 0.74rem;
+      }
+
+      .deck-shell {
+        padding: 12px;
+      }
+
+      .slide-content {
+        padding: 22px;
+        gap: 14px;
+      }
+
+      .slide-title {
+        font-size: clamp(1.86rem, 12vw, 3rem);
+        line-height: 1;
+      }
+
+      .slide-title.small {
+        font-size: clamp(1.55rem, 9vw, 2.35rem);
+      }
+
+      .lead {
+        font-size: 0.96rem;
+        line-height: 1.42;
+      }
+
+      .flow-line,
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .metric-card,
+      .flow-step {
+        min-height: 0;
+      }
+
+      .deck-hint,
+      .live-link {
+        display: none;
+      }
+
+      .controls {
+        grid-template-columns: 1fr;
+        padding: 10px 12px 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 1ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app" aria-label="Slide Akmal V1">
+    <div class="progress-track" aria-hidden="true">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <header class="deck-topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <img class="brand-logo" src="assets/jata-negara.svg" alt="">
+        </span>
+        <span class="brand-name">SlideAkmalV1</span>
+      </div>
+      <nav class="slide-dots" id="slideDots" aria-label="Pilih slide"></nav>
+      <div class="counter-pill" id="slideCounter">1 / 12</div>
+    </header>
+
+    <main class="deck-shell">
+      <section class="slide cover-slide" aria-labelledby="slide-1-title">
+        <div class="slide-content split-layout">
+          <div>
+            <p class="slide-kicker">Template pembentangan baharu dengan gaya Custom Gemini AUD</p>
+            <h1 class="slide-title" id="slide-1-title">Slide Akmal V1</h1>
+            <p class="lead">Deck asas untuk pembentangan baru yang boleh terus dipublish sebagai live page GitHub Pages.</p>
+            <p class="presenter-line">Pembentangan oleh Mohamad Nurakmal bin Ab Rasid.</p>
+            <div class="gemini-tools" aria-label="Status gaya">
+              <span class="gemini-badge">
+                <span class="gemini-mark" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" role="img"><path fill="currentColor" d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2zm6 12l.9 3.1L22 18l-3.1.9L18 22l-.9-3.1L14 18l3.1-.9L18 14z"/></svg>
+                </span>
+                Gaya Custom Gemini AUD
+              </span>
+            </div>
+          </div>
+          <aside class="portrait-card" aria-label="Profil pembentang">
+            <div class="portrait-frame">
+              <img class="portrait-photo" src="assets/mohamad-nurakmal.png" alt="Mohamad Nurakmal bin Ab Rasid">
+            </div>
+            <div class="portrait-meta">
+              <strong>Mohamad Nurakmal bin Ab Rasid</strong>
+              <span>Slide interaktif, ringkas, dan sedia live page</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="slide" aria-labelledby="slide-2-title">
+        <div class="slide-content stack-layout">
+          <div>
+            <p class="slide-kicker">Matlamat</p>
+            <h2 class="slide-title small" id="slide-2-title">Apa yang deck ini perlu capai?</h2>
+            <p class="lead">Versi pertama ini memberi rangka pembentangan yang kemas supaya kandungan sebenar boleh diganti dengan cepat tanpa bina semula gaya.</p>
+          </div>
+          <div class="metric-grid">
+            <article class="metric-card">
+              <span>Fokus</span>
+              <strong>1 idea</strong>
+              <p>Setiap slide membawa satu mesej utama supaya audien mudah ikut.</p>
+            </article>
+            <article class="metric-card">
+              <span>Format</span>
+              <strong>12 slide</strong>
+              <p>Cukup panjang untuk naratif lengkap, masih ringkas untuk latihan atau taklimat.</p>
+            </article>
+            <article class="metric-card">
+              <span>Live</span>
+              <strong>Pages</strong>
+              <p>Statik, pantas, dan sesuai untuk GitHub Pages public repo.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" aria-labelledby="slide-3-title">
+        <div class="slide-content split-layout">
+          <div>
+            <p class="slide-kicker">Konteks</p>
+            <h2 class="slide-title small" id="slide-3-title">Masalah yang perlu diselesaikan</h2>
+            <p class="lead">Bila slide dibuat cepat, rupa sering tidak seragam. Deck ini jadi rangka awal yang ada struktur, gerak, dan bahasa visual yang konsisten.</p>
+          </div>
+          <div class="content-card">
+            <ol class="number-list">
+              <li>Kekalkan gaya UAD Custom Gemini yang sudah dikenali.</li>
+              <li>Buka ruang untuk tajuk, objektif, proses, dapatan, dan tindakan.</li>
+              <li>Pastikan setiap slide muat dalam viewport tanpa scroll dokumen.</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" aria-labelledby="slide-4-title">
+        <div class="slide-content stack-layout">
+          <div>
+            <p class="slide-kicker">Naratif</p>
+            <h2 class="slide-title small" id="slide-4-title">Aliran pembentangan</h2>
+          </div>
+          <div class="flow-line">
+            <article class="flow-step">
+              <span>01</span>
+              <strong>Buka isu</strong>
+              <p>Nyatakan tajuk, objektif, dan sebab pembentangan dibuat.</p>
+            </article>
+            <article class="flow-step">
+              <span>02</span>
+              <strong>Susun bukti</strong>
+              <p>Bawa fakta, dapatan, atau pemerhatian secara teratur.</p>
+            </article>
+            <article class="flow-step">
+              <span>03</span>
+              <strong>Jelaskan impak</strong>
+              <p>Tunjukkan risiko, peluang penambahbaikan, dan keputusan yang diperlukan.</p>
+            </article>
+            <article class="flow-step">
+              <span>04</span>
+              <strong>Tutup tindakan</strong>
+              <p>Akhiri dengan langkah seterusnya dan senarai semak pelaksanaan.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" aria-labelledby="slide-5-title">
+        <div class="slide-content split-layout">
+          <div>
+            <p class="slide-kicker">Struktur</p>
+            <h2 class="slide-title small" id="slide-5-title">Rangka isi yang boleh terus diganti</h2>
+            <p class="lead">Gunakan format ini untuk mana-mana topik baru: tajuk, objektif, konteks, proses, dapatan, tindakan, dan penutup.</p>
+          </div>
+          <div class="content-card">
+            <ul class="check-list">
+              <li>Slide tajuk dan profil pembentang.</li>
+              <li>Slide objektif serta metrik utama.</li>
+              <li>Slide proses dalam bentuk empat langkah.</li>
+              <li>Slide prompt atau nota kerja yang boleh disalin.</li>
+              <li>Slide akhir untuk keputusan dan tindakan.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" aria-labelledby="slide-6-title">
+        <div class="slide-content stack-layout">
+          <div>
+            <p class="slide-kicker">Gaya visual</p>
+            <h2 class="slide-title small" id="slide-6-title">DNA Custom Gemini AUD yang dikekalkan</h2>
+            <p class="lead">Latar putih benar, grid biru halus, aksen emas, panel kaca lembut, radius 8px, dan kawalan slide yang stabil.</p>
+          </div>
+          <div class="metric-grid">
+            <article class="metric-card">
+              <span>Warna</span>
+              <strong>Biru + emas</strong>
+              <p>Rasa rasmi, bersih, dan masih ada tenaga visual.</p>
+            </article>
+            <article class="metric-card">
+              <span>Gerak</span>
+              <strong>Halus</strong>
+              <p>Progress sheen, grid drift, dan badge Gemini bergerak perlahan.</p>
+            </article>
+            <article class="metric-card">
+              <span>Layout</span>
+              <strong>Viewport</strong>
+              <p>Slide dikunci pada skrin supaya sesuai untuk presentation mode.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" aria-labelledby="slide-7-title">
+        <div class="slide-content split-layout">
+          <div>
+            <p class="slide-kicker">Prompt ringkas</p>
+            <h2 class="slide-title small" id="slide-7-title">Contoh nota yang boleh disalin</h2>
+            <p class="lead">Bahagian ini berguna jika slide nanti mahu disambungkan dengan proses kerja Gemini atau penyediaan nota pembentangan.</p>
+            <button class="copy-button" type="button" data-copy-target="prompt-utama">Salin prompt utama</button>
+          </div>
+          <div class="prompt-box">
+            <pre id="prompt-utama">Sila bantu susun kandungan pembentangan ini kepada 12 slide ringkas. Kekalkan nada profesional Bahasa Melayu Malaysia, fokus kepada satu mesej utama setiap slide, dan cadangkan poin tindakan yang jelas pada akhir deck.</pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" aria-labelledby="slide-8-title">
+        <div class="slide-content split-layout">
+          <div>
+            <p class="slide-kicker">Dapatan</p>
+            <h2 class="slide-title small" id="slide-8-title">Ruang untuk fakta penting</h2>
+            <p class="lead">Gantikan kandungan contoh ini dengan dapatan, data, isu audit, cadangan, atau nota projek sebenar.</p>
+          </div>
+          <div class="content-card">
+            <ol class="number-list">
+              <li>Nyatakan dapatan utama dalam satu ayat pendek.</li>
+              <li>Letakkan bukti sokongan yang paling kuat sahaja.</li>
+              <li>Tutup dengan maksud dapatan kepada keputusan audien.</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" aria-labelledby="slide-9-title">
+        <div class="slide-content stack-layout">
+          <div>
+            <p class="slide-kicker">Keputusan</p>
+            <h2 class="slide-title small" id="slide-9-title">Apa yang perlu diputuskan?</h2>
+            <p class="lead">Slide ini boleh digunakan untuk meminta persetujuan, memilih cadangan, mengesahkan tindakan, atau menandakan risiko yang perlu dipantau.</p>
+          </div>
+          <div class="flow-line">
+            <article class="flow-step">
+              <span>A</span>
+              <strong>Setuju</strong>
+              <p>Keputusan boleh dibuat terus dan tugasan dimulakan.</p>
+            </article>
+            <article class="flow-step">
+              <span>B</span>
+              <strong>Pinda</strong>
+              <p>Cadangan perlu dibaiki sebelum tindakan rasmi.</p>
+            </article>
+            <article class="flow-step">
+              <span>C</span>
+              <strong>Tangguh</strong>
+              <p>Maklumat tambahan diperlukan sebelum komitmen dibuat.</p>
+            </article>
+            <article class="flow-step">
+              <span>D</span>
+              <strong>Pantau</strong>
+              <p>Teruskan pemantauan dan bawa semula dalam sesi seterusnya.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" aria-labelledby="slide-10-title">
+        <div class="slide-content split-layout">
+          <div>
+            <p class="slide-kicker">Tindakan</p>
+            <h2 class="slide-title small" id="slide-10-title">Pelan kerja selepas pembentangan</h2>
+            <p class="lead">Pastikan setiap tindakan ada pemilik, tarikh sasaran, dan bukti siap yang boleh disemak.</p>
+          </div>
+          <div class="content-card">
+            <ul class="check-list">
+              <li>Sahkan tajuk dan kandungan sebenar yang akan dimasukkan.</li>
+              <li>Kemas kini setiap placeholder dengan maklumat projek.</li>
+              <li>Push semula ke GitHub supaya live page terkini.</li>
+              <li>Semak paparan desktop dan mobile sebelum kongsi pautan.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" aria-labelledby="slide-11-title">
+        <div class="slide-content split-layout">
+          <div>
+            <p class="slide-kicker">Semakan akhir</p>
+            <h2 class="slide-title small" id="slide-11-title">Checklist sebelum dikongsi</h2>
+            <button class="copy-button" type="button" data-copy-target="checklist-final">Salin checklist</button>
+          </div>
+          <div class="prompt-box">
+            <pre id="checklist-final">1. Tajuk slide tepat.
+2. Nama pembentang betul.
+3. Semua placeholder sudah diganti.
+4. Slide tidak melimpah keluar viewport.
+5. Link GitHub Pages boleh dibuka.
+6. Semak keyboard ArrowRight, ArrowLeft, Home, dan End.</pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" aria-labelledby="slide-12-title">
+        <div class="slide-content stack-layout">
+          <div>
+            <p class="slide-kicker">Penutup</p>
+            <h2 class="slide-title small" id="slide-12-title">Slide Akmal V1 sedia untuk iterasi kandungan</h2>
+            <p class="lead">Repo dan live page menjadi asas. Fasa seterusnya hanya perlu ganti isi slide mengikut topik sebenar.</p>
+          </div>
+          <div class="note-strip">
+            Pautan live dijangka: https://akmal4244.github.io/SlideAkmalV1/
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="controls">
+      <span class="deck-hint">Keyboard: ArrowRight, ArrowLeft, Home, End</span>
+      <div class="control-group">
+        <button class="nav-button" id="prevBtn" type="button" aria-label="Slide sebelum" title="Slide sebelum">
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="fullscreen-button" id="fullscreenBtn" type="button" aria-label="Masuk skrin penuh" title="Masuk skrin penuh" aria-pressed="false">
+          <svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m8 0h3a2 2 0 0 0 2-2v-3"/></svg>
+        </button>
+        <button class="nav-button" id="nextBtn" type="button" aria-label="Slide seterusnya" title="Slide seterusnya">
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <a class="live-link" href="https://akmal4244.github.io/SlideAkmalV1/">GitHub Pages</a>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const progressBar = document.getElementById("progressBar");
+    const slideCounter = document.getElementById("slideCounter");
+    const slideDots = document.getElementById("slideDots");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const fullscreenBtn = document.getElementById("fullscreenBtn");
+    const toast = document.getElementById("toast");
+    let current = 0;
+    let toastTimer;
+
+    slides.forEach((slide, index) => {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = "slide-dot";
+      dot.textContent = String(index + 1);
+      dot.setAttribute("aria-label", `Pergi ke slide ${index + 1}`);
+      dot.addEventListener("click", () => goToSlide(index));
+      slideDots.appendChild(dot);
+      slide.setAttribute("aria-hidden", "true");
+    });
+
+    function clampSlide(value) {
+      const parsed = Number.parseInt(value, 10);
+      if (Number.isNaN(parsed)) return 0;
+      return Math.min(Math.max(parsed - 1, 0), slides.length - 1);
+    }
+
+    function readHashSlide() {
+      return clampSlide(window.location.hash.replace("#", ""));
+    }
+
+    function centerActiveDot(dot) {
+      if (!dot || slideDots.scrollWidth <= slideDots.clientWidth) return;
+      const dotLeft = dot.offsetLeft - slideDots.offsetLeft;
+      const left = dotLeft - ((slideDots.clientWidth - dot.offsetWidth) / 2);
+      const maxLeft = slideDots.scrollWidth - slideDots.clientWidth;
+      slideDots.scrollTo({
+        left: Math.min(Math.max(left, 0), maxLeft),
+        behavior: "smooth"
+      });
+    }
+
+    function render() {
+      slides.forEach((slide, index) => {
+        const active = index === current;
+        slide.classList.toggle("is-active", active);
+        slide.setAttribute("aria-hidden", String(!active));
+      });
+
+      const slideNumber = current + 1;
+      const percentage = (slideNumber / slides.length) * 100;
+      progressBar.style.width = `${percentage}%`;
+      slideCounter.textContent = `${slideNumber} / ${slides.length}`;
+      Array.from(slideDots.children).forEach((dot, index) => {
+        const active = index === current;
+        dot.classList.toggle("is-active", active);
+        dot.setAttribute("aria-current", active ? "step" : "false");
+        if (active) centerActiveDot(dot);
+      });
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === slides.length - 1;
+      document.title = `${slideNumber} / ${slides.length} - Slide Akmal V1`;
+      window.scrollTo(0, 0);
+    }
+
+    function goToSlide(index) {
+      current = Math.min(Math.max(index, 0), slides.length - 1);
+      location.hash = `#${current + 1}`;
+      render();
+    }
+
+    async function copyTextFrom(targetId) {
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      const text = target.textContent.trim();
+
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(text);
+          showToast("Disalin ke papan klip.");
+          return;
+        } catch (error) {
+          // Fall through to the textarea fallback for browsers that block clipboard access.
+        }
+      }
+
+      if (copyWithTextarea(text)) return;
+      selectTextFallback(target);
+    }
+
+    function copyWithTextarea(text) {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "fixed";
+      textarea.style.top = "0";
+      textarea.style.left = "0";
+      textarea.style.width = "2px";
+      textarea.style.height = "2px";
+      textarea.style.opacity = "0.01";
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+      textarea.setSelectionRange(0, text.length);
+      const copied = document.execCommand("copy");
+      textarea.remove();
+      if (copied) showToast("Disalin ke papan klip.");
+      return copied;
+    }
+
+    function selectTextFallback(target) {
+      const range = document.createRange();
+      range.selectNodeContents(target);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+      showToast("Teks dipilih. Tekan Ctrl+C.");
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("is-visible");
+      window.clearTimeout(toastTimer);
+      toastTimer = window.setTimeout(() => {
+        toast.classList.remove("is-visible");
+      }, 1800);
+    }
+
+    function getFullscreenElement() {
+      return document.fullscreenElement || document.webkitFullscreenElement || null;
+    }
+
+    function supportsFullscreen() {
+      const root = document.documentElement;
+      return Boolean(
+        (document.fullscreenEnabled && typeof root.requestFullscreen === "function") ||
+        (document.webkitFullscreenEnabled && typeof root.webkitRequestFullscreen === "function")
+      );
+    }
+
+    async function requestDeckFullscreen() {
+      const root = document.documentElement;
+      if (root.requestFullscreen) {
+        try {
+          await root.requestFullscreen({ navigationUI: "hide" });
+        } catch (error) {
+          await root.requestFullscreen();
+        }
+        return;
+      }
+      if (root.webkitRequestFullscreen) {
+        root.webkitRequestFullscreen();
+      }
+    }
+
+    async function exitDeckFullscreen() {
+      if (document.exitFullscreen) {
+        await document.exitFullscreen();
+        return;
+      }
+      if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      }
+    }
+
+    function updateFullscreenButton() {
+      if (fullscreenBtn.disabled) {
+        fullscreenBtn.classList.remove("is-fullscreen");
+        fullscreenBtn.setAttribute("aria-pressed", "false");
+        return;
+      }
+      const isFullscreen = Boolean(getFullscreenElement());
+      fullscreenBtn.classList.toggle("is-fullscreen", isFullscreen);
+      fullscreenBtn.setAttribute("aria-pressed", String(isFullscreen));
+      fullscreenBtn.setAttribute("aria-label", isFullscreen ? "Keluar skrin penuh" : "Masuk skrin penuh");
+      fullscreenBtn.title = isFullscreen ? "Keluar skrin penuh" : "Masuk skrin penuh";
+    }
+
+    async function toggleFullscreen() {
+      if (!supportsFullscreen()) {
+        showToast("Fullscreen tidak disokong oleh browser ini.");
+        return;
+      }
+
+      try {
+        if (getFullscreenElement()) {
+          await exitDeckFullscreen();
+        } else {
+          await requestDeckFullscreen();
+        }
+      } catch (error) {
+        showToast("Fullscreen tidak dapat diaktifkan. Cuba tekan F11.");
+      } finally {
+        updateFullscreenButton();
+      }
+    }
+
+    prevBtn.addEventListener("click", () => goToSlide(current - 1));
+    nextBtn.addEventListener("click", () => goToSlide(current + 1));
+    fullscreenBtn.addEventListener("click", toggleFullscreen);
+    document.addEventListener("fullscreenchange", updateFullscreenButton);
+    document.addEventListener("webkitfullscreenchange", updateFullscreenButton);
+
+    document.querySelectorAll("[data-copy-target]").forEach((button) => {
+      button.addEventListener("click", () => {
+        copyTextFrom(button.dataset.copyTarget);
+      });
+    });
+
+    window.addEventListener("hashchange", () => {
+      current = readHashSlide();
+      render();
+    });
+
+    window.addEventListener("keydown", (event) => {
+      const tagName = event.target.tagName.toLowerCase();
+      if (tagName === "input" || tagName === "textarea" || tagName === "select" || tagName === "button" || tagName === "a") return;
+
+      switch (event.key) {
+        case "ArrowRight":
+        case " ":
+        case "PageDown":
+          event.preventDefault();
+          goToSlide(current + 1);
+          break;
+        case "ArrowLeft":
+        case "PageUp":
+          event.preventDefault();
+          goToSlide(current - 1);
+          break;
+        case "Home":
+          event.preventDefault();
+          goToSlide(0);
+          break;
+        case "End":
+          event.preventDefault();
+          goToSlide(slides.length - 1);
+          break;
+      }
+    });
+
+    current = readHashSlide();
+    if (!window.location.hash) {
+      history.replaceState(null, "", "#1");
+    }
+    if (!supportsFullscreen()) {
+      fullscreenBtn.disabled = true;
+      fullscreenBtn.title = "Fullscreen tidak disokong";
+      fullscreenBtn.setAttribute("aria-label", "Fullscreen tidak disokong");
+    }
+    updateFullscreenButton();
+    render();
+  </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "slide-akmal-v1",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Laman slide interaktif Slide Akmal V1 untuk GitHub Pages.",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/static.test.mjs",
+    "start": "npx http-server . -p 8026 -c-1"
+  },
+  "keywords": [
+    "slides",
+    "github-pages",
+    "presentation"
+  ],
+  "author": "akmal4244",
+  "license": "MIT"
+}
