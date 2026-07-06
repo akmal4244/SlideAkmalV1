@@ -822,6 +822,38 @@
       resize: none;
     }
 
+    .setup-steps {
+      min-height: 0;
+      overflow: auto;
+      list-style: none;
+      margin: 0;
+      padding: 2px 4px 2px 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .setup-steps li {
+      display: grid;
+      gap: 5px;
+      border: 1px solid rgba(15, 76, 129, 0.12);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.78);
+      padding: 12px;
+      box-shadow: 0 12px 28px rgba(15, 76, 129, 0.07);
+    }
+
+    .setup-steps strong {
+      color: #123154;
+      font-size: 0.95rem;
+      line-height: 1.22;
+    }
+
+    .setup-steps span {
+      color: var(--muted);
+      font-size: 0.83rem;
+      line-height: 1.45;
+    }
+
     .prompt-box pre {
       max-height: 190px;
       margin: 0;
@@ -1056,6 +1088,14 @@
         padding: 12px;
       }
 
+      .setup-steps {
+        gap: 8px;
+      }
+
+      .setup-steps li {
+        padding: 10px;
+      }
+
       .builder-copy {
         align-items: flex-start;
       }
@@ -1119,7 +1159,7 @@
         <span class="brand-name">SlideAkmalV1</span>
       </div>
       <nav class="slide-dots" id="slideDots" aria-label="Pilih slaid"></nav>
-      <div class="counter-pill" id="slideCounter">1 / 20</div>
+      <div class="counter-pill" id="slideCounter">1 / 21</div>
     </header>
 
     <main class="deck-shell">
@@ -1655,6 +1695,43 @@ created_at</textarea>
           </div>
         </div>
       </section>
+
+      <section class="slide interactive-slide setup-slide" aria-labelledby="slide-21-title">
+        <div class="slide-content builder-layout">
+          <div class="prompt-builder">
+            <div>
+              <p class="slide-kicker">Setup automatik</p>
+              <h2 class="slide-title small" id="slide-21-title">Setup automatik Google Sheets dan Apps Script</h2>
+              <p class="lead">Kod ini menggunakan maklumat daripada slide 20. Peserta hanya perlu tampal kod dalam Google Apps Script, jalankan setupSheets, kemudian deploy sebagai Web App.</p>
+            </div>
+            <ol class="setup-steps" aria-label="Langkah setup automatik Google Sheets dan Apps Script">
+              <li>
+                <strong>1. Buka Google Sheets</strong>
+                <span>Cipta fail baharu, kemudian pergi ke Extensions dan pilih Apps Script.</span>
+              </li>
+              <li>
+                <strong>2. Tampal kod ini</strong>
+                <span>Padam kod contoh, tampal kod sebelah kanan, kemudian simpan projek.</span>
+              </li>
+              <li>
+                <strong>3. Jalankan setupSheets</strong>
+                <span>Fungsi ini akan cipta tab contacts, header data, dan tab users jika pilihan log masuk digunakan.</span>
+              </li>
+              <li>
+                <strong>4. Deploy sebagai Web App</strong>
+                <span>Pilih akses yang sesuai untuk latihan, salin URL Web App, kemudian tampal semula pada slide 20.</span>
+              </li>
+            </ol>
+          </div>
+          <div class="prompt-box builder-output">
+            <div class="builder-copy">
+              <strong>Kod Apps Script automatik</strong>
+              <button class="copy-button" type="button" data-copy-target="apps-script-output">Salin kod</button>
+            </div>
+            <textarea readonly class="copy-textbox" id="apps-script-output" aria-label="Kod Apps Script yang dijana"></textarea>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="controls">
@@ -1763,6 +1840,7 @@ created_at</textarea>
       .map((id) => document.getElementById(id))
       .filter(Boolean);
     const promptOutput = document.getElementById("prompt-sistem-penuh");
+    const appsScriptOutput = document.getElementById("apps-script-output");
 
     function fieldValue(id, fallback) {
       const field = document.getElementById(id);
@@ -1780,6 +1858,17 @@ created_at</textarea>
 
     function formatBulletList(items) {
       return items.map((item) => `- ${item}`).join("\n");
+    }
+
+    function escapeAppsScriptString(value) {
+      return String(value)
+        .replace(/\\/g, "\\\\")
+        .replace(/"/g, '\\"')
+        .replace(/\r?\n/g, "\\n");
+    }
+
+    function toAppsScriptArray(items) {
+      return `[${items.map((item) => `"${escapeAppsScriptString(item)}"`).join(", ")}]`;
     }
 
     function getAuthInstruction(authMode) {
@@ -1808,6 +1897,7 @@ created_at</textarea>
         users: fieldValue(builderFieldIds.users, "Pengguna awam dan pemilik sistem"),
         features,
         fields,
+        authMode: fieldValue(builderFieldIds.auth, "none"),
         authInstruction: getAuthInstruction(fieldValue(builderFieldIds.auth, "none")),
         publishTarget: fieldValue(builderFieldIds.publish, "GitHub Pages"),
         scriptUrl: fieldValue(builderFieldIds.scriptUrl, "<tampal URL Web App Google Apps Script di sini>")
@@ -1874,9 +1964,243 @@ Hasil akhir yang saya mahu:
 Pastikan semua langkah logik, mudah diikuti dan jangan guna istilah teknikal yang tidak perlu.`;
     }
 
+    function buildAppsScriptCode(values) {
+      const fieldArray = toAppsScriptArray(values.fields);
+      const featureArray = toAppsScriptArray(values.features);
+      const systemName = escapeAppsScriptString(values.name);
+      const purpose = escapeAppsScriptString(values.purpose);
+      const users = escapeAppsScriptString(values.users);
+      const authMode = escapeAppsScriptString(values.authMode);
+
+      return `/**
+ * Kod dijana oleh Slide Akmal V1.
+ * Sistem: ${systemName}
+ * Tujuan: ${purpose}
+ *
+ * Cara guna:
+ * 1. Buka Google Sheets, kemudian Extensions > Apps Script.
+ * 2. Tampal semua kod ini.
+ * 3. Jalankan fungsi setupSheets sekali.
+ * 4. Deploy sebagai Web App dan salin URL deploy ke sistem web.
+ */
+const CONFIG = {
+  systemName: "${systemName}",
+  purpose: "${purpose}",
+  users: "${users}",
+  features: ${featureArray},
+  contactsSheetName: "contacts",
+  usersSheetName: "users",
+  fields: ${fieldArray},
+  authMode: "${authMode}",
+  defaultStatus: "baharu"
+};
+
+function setupSheets() {
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const contactsSheet = getOrCreateSheet_(spreadsheet, CONFIG.contactsSheetName);
+  ensureHeader_(contactsSheet, CONFIG.fields, true);
+
+  const sheets = [CONFIG.contactsSheetName];
+  if (CONFIG.authMode !== "none") {
+    const usersSheet = getOrCreateSheet_(spreadsheet, CONFIG.usersSheetName);
+    ensureHeader_(usersSheet, ["username", "password", "role", "created_at"], false);
+    seedOwnerUser_(usersSheet);
+    sheets.push(CONFIG.usersSheetName);
+  }
+
+  return {
+    ok: true,
+    systemName: CONFIG.systemName,
+    message: "Setup Google Sheets selesai. Sila deploy Apps Script sebagai Web App.",
+    sheets: sheets,
+    fields: readHeader_(contactsSheet)
+  };
+}
+
+function doGet(e) {
+  const params = e && e.parameter ? e.parameter : {};
+  const action = params.action || "list";
+
+  if (action === "setup") {
+    return json_(setupSheets());
+  }
+
+  setupSheets();
+
+  if (action === "login") {
+    return json_(login_(params.username, params.password));
+  }
+
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const contactsSheet = spreadsheet.getSheetByName(CONFIG.contactsSheetName);
+  return json_({
+    ok: true,
+    systemName: CONFIG.systemName,
+    contacts: readRows_(contactsSheet)
+  });
+}
+
+function doPost(e) {
+  setupSheets();
+  const data = parseBody_(e);
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const contactsSheet = spreadsheet.getSheetByName(CONFIG.contactsSheetName);
+  const saved = appendRecord_(contactsSheet, data);
+
+  return json_({
+    ok: true,
+    message: "Data berjaya disimpan dengan teratur.",
+    contact: saved
+  });
+}
+
+function getOrCreateSheet_(spreadsheet, name) {
+  const existing = spreadsheet.getSheetByName(name);
+  return existing || spreadsheet.insertSheet(name);
+}
+
+function ensureHeader_(sheet, fields, includeStatus) {
+  const required = fields.slice();
+  if (required.indexOf("created_at") === -1) required.push("created_at");
+  if (includeStatus && required.indexOf("status") === -1) required.push("status");
+
+  const current = readHeader_(sheet);
+  const merged = current.slice();
+  required.forEach(function(field) {
+    if (merged.indexOf(field) === -1) merged.push(field);
+  });
+
+  sheet.getRange(1, 1, 1, merged.length).setValues([merged]);
+  sheet.setFrozenRows(1);
+}
+
+function readHeader_(sheet) {
+  const lastColumn = sheet.getLastColumn();
+  if (lastColumn < 1) return [];
+
+  return sheet
+    .getRange(1, 1, 1, lastColumn)
+    .getValues()[0]
+    .map(function(cell) {
+      return String(cell).trim();
+    })
+    .filter(Boolean);
+}
+
+function appendRecord_(sheet, data) {
+  const header = readHeader_(sheet);
+  const record = {};
+  Object.keys(data || {}).forEach(function(key) {
+    record[key] = data[key];
+  });
+
+  if (!record.created_at) record.created_at = new Date().toISOString();
+  if (!record.status && header.indexOf("status") !== -1) record.status = CONFIG.defaultStatus;
+
+  const row = header.map(function(field) {
+    return record[field] === undefined ? "" : record[field];
+  });
+  sheet.appendRow(row);
+
+  return rowToObject_(header, row);
+}
+
+function readRows_(sheet) {
+  const values = sheet.getDataRange().getValues();
+  if (values.length <= 1) return [];
+
+  const header = values[0].map(function(cell) {
+    return String(cell).trim();
+  });
+
+  return values.slice(1)
+    .filter(function(row) {
+      return row.some(function(cell) {
+        return cell !== "";
+      });
+    })
+    .map(function(row) {
+      return rowToObject_(header, row);
+    });
+}
+
+function rowToObject_(header, row) {
+  return header.reduce(function(item, field, index) {
+    if (!field) return item;
+    item[field] = normalizeCell_(row[index]);
+    return item;
+  }, {});
+}
+
+function normalizeCell_(value) {
+  if (Object.prototype.toString.call(value) === "[object Date]" && !isNaN(value)) {
+    return value.toISOString();
+  }
+  return value;
+}
+
+function parseBody_(e) {
+  const rawBody = e && e.postData && e.postData.contents ? e.postData.contents : "";
+  if (rawBody) {
+    try {
+      return JSON.parse(rawBody);
+    } catch (error) {
+      return { raw: rawBody };
+    }
+  }
+  return e && e.parameter ? e.parameter : {};
+}
+
+function seedOwnerUser_(sheet) {
+  const users = readRows_(sheet);
+  if (users.length > 0) return;
+  sheet.appendRow(["owner", "TukarPassword123!", "owner", new Date().toISOString()]);
+}
+
+function login_(username, password) {
+  if (CONFIG.authMode === "none") {
+    return { ok: true, token: "latihan-tanpa-login", role: "public" };
+  }
+
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const usersSheet = spreadsheet.getSheetByName(CONFIG.usersSheetName);
+  const users = readRows_(usersSheet);
+  const user = users.find(function(item) {
+    return String(item.username) === String(username || "") &&
+      String(item.password) === String(password || "");
+  });
+
+  if (!user) {
+    return { ok: false, message: "Nama pengguna atau kata laluan tidak tepat." };
+  }
+
+  return {
+    ok: true,
+    token: Utilities.getUuid(),
+    username: user.username,
+    role: user.role || "owner"
+  };
+}
+
+function json_(data) {
+  return ContentService.createTextOutput(JSON.stringify(data))
+    .setMimeType(ContentService.MimeType.JSON);
+}`;
+    }
+
     function updateGeneratedPrompt() {
       if (!promptOutput) return;
       promptOutput.value = buildSystemPrompt(collectBuilderValues());
+    }
+
+    function updateAppsScriptCode() {
+      if (!appsScriptOutput) return;
+      appsScriptOutput.value = buildAppsScriptCode(collectBuilderValues());
+    }
+
+    function refreshGeneratedOutputs() {
+      updateGeneratedPrompt();
+      updateAppsScriptCode();
     }
 
     async function copyTextFrom(targetId) {
@@ -2012,8 +2336,8 @@ Pastikan semua langkah logik, mudah diikuti dan jangan guna istilah teknikal yan
     document.addEventListener("webkitfullscreenchange", updateFullscreenButton);
 
     builderFields.forEach((field) => {
-      field.addEventListener("input", updateGeneratedPrompt);
-      field.addEventListener("change", updateGeneratedPrompt);
+      field.addEventListener("input", refreshGeneratedOutputs);
+      field.addEventListener("change", refreshGeneratedOutputs);
     });
 
     document.querySelectorAll("[data-copy-target]").forEach((button) => {
@@ -2063,7 +2387,7 @@ Pastikan semua langkah logik, mudah diikuti dan jangan guna istilah teknikal yan
       fullscreenBtn.title = "Skrin penuh tidak disokong";
       fullscreenBtn.setAttribute("aria-label", "Skrin penuh tidak disokong");
     }
-    updateGeneratedPrompt();
+    refreshGeneratedOutputs();
     updateFullscreenButton();
     render();
   </script>

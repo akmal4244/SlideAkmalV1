@@ -18,6 +18,7 @@ https://akmal4244.github.io/SlideAkmalV1/
 - Kotak teks prompt yang boleh disalin untuk borang, paparan data, log masuk dan prompt sistem penuh
 - Gambar sebenar berkaitan kod, spreadsheet dan ruang kerja pembangunan sebagai sokongan visual
 - Slide interaktif untuk peserta memasukkan nama sistem, tujuan, pengguna, ciri, medan data dan pilihan penerbitan sebelum prompt penuh dijana
+- Slide 21 menjana kod Apps Script automatik berdasarkan maklumat slide interaktif, termasuk setup Google Sheets, doGet(e), doPost(e) dan tab data
 
 ## Sumber Gambar
 
