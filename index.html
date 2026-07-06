@@ -701,6 +701,127 @@
       outline-offset: 2px;
     }
 
+    .interactive-slide .slide-content {
+      height: 100%;
+      align-content: stretch;
+      gap: 16px;
+      padding: clamp(22px, 3.1vw, 42px);
+    }
+
+    .interactive-slide .slide-title.small {
+      font-size: clamp(1.58rem, 3vw, 2.72rem);
+    }
+
+    .interactive-slide .lead {
+      font-size: clamp(0.92rem, 1.18vw, 1.04rem);
+      line-height: 1.4;
+    }
+
+    .builder-layout {
+      grid-template-columns: minmax(0, 0.96fr) minmax(330px, 1.04fr);
+      align-items: stretch;
+    }
+
+    .prompt-builder,
+    .builder-output {
+      min-height: 0;
+      display: grid;
+      gap: 12px;
+      align-content: stretch;
+    }
+
+    .prompt-builder {
+      grid-template-rows: max-content minmax(0, 1fr);
+    }
+
+    .builder-output {
+      grid-template-rows: max-content minmax(0, 1fr);
+    }
+
+    .builder-copy {
+      align-self: start;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .builder-copy strong {
+      color: #0b1726;
+      font-size: 0.94rem;
+      line-height: 1.2;
+    }
+
+    .prompt-builder-form {
+      min-height: 0;
+      overflow: auto;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 2px 4px 2px 0;
+    }
+
+    .builder-field {
+      min-width: 0;
+      display: grid;
+      gap: 6px;
+    }
+
+    .builder-field.wide {
+      grid-column: 1 / -1;
+    }
+
+    .builder-field span {
+      color: #174569;
+      font-size: 0.72rem;
+      line-height: 1.2;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .builder-field input,
+    .builder-field textarea,
+    .builder-field select {
+      width: 100%;
+      min-width: 0;
+      border: 1px solid rgba(15, 76, 129, 0.14);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.84);
+      color: #102235;
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 700;
+      line-height: 1.35;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    }
+
+    .builder-field input,
+    .builder-field select {
+      min-height: 38px;
+      padding: 9px 10px;
+    }
+
+    .builder-field textarea {
+      min-height: 66px;
+      max-height: 104px;
+      resize: vertical;
+      padding: 10px;
+    }
+
+    .builder-field input:focus,
+    .builder-field textarea:focus,
+    .builder-field select:focus {
+      outline: 3px solid rgba(37, 99, 235, 0.16);
+      border-color: rgba(37, 99, 235, 0.5);
+    }
+
+    .builder-output .copy-textbox {
+      min-height: 0;
+      height: 100%;
+      max-height: none;
+      resize: none;
+    }
+
     .prompt-box pre {
       max-height: 190px;
       margin: 0;
@@ -903,6 +1024,44 @@
       .flow-line,
       .metric-grid {
         grid-template-columns: 1fr;
+      }
+
+      .builder-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(0, 1.05fr) minmax(176px, 0.95fr);
+        align-content: stretch;
+      }
+
+      .interactive-slide .slide-content {
+        padding: 20px;
+        gap: 10px;
+      }
+
+      .prompt-builder {
+        overflow: hidden;
+      }
+
+      .prompt-builder-form {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .builder-field textarea {
+        min-height: 58px;
+        max-height: 84px;
+      }
+
+      .builder-output {
+        gap: 8px;
+        padding: 12px;
+      }
+
+      .builder-copy {
+        align-items: flex-start;
+      }
+
+      .builder-copy strong {
+        font-size: 0.82rem;
       }
 
       .media-card {
@@ -1428,66 +1587,71 @@ URL_APPS_SCRIPT=<tampal URL Web App di sini></textarea>
         </div>
       </section>
 
-      <section class="slide" aria-labelledby="slide-20-title">
-        <div class="slide-content split-layout">
-          <div>
-            <p class="slide-kicker">Prompt terus untuk copy paste</p>
-            <h2 class="slide-title small" id="slide-20-title">Salin dan tampal untuk minta AI bina sistem</h2>
-            <p class="lead">Ini prompt utama untuk mengajar pengguna membina sistem percuma. Peserta hanya perlu ubah nama sistem, medan data dan URL Apps Script.</p>
-            <button class="copy-button" type="button" data-copy-target="prompt-sistem-penuh">Salin prompt sistem penuh</button>
+      <section class="slide interactive-slide" aria-labelledby="slide-20-title">
+        <div class="slide-content builder-layout">
+          <div class="prompt-builder">
+            <div>
+              <p class="slide-kicker">Pembina prompt interaktif</p>
+              <h2 class="slide-title small" id="slide-20-title">Isi soalan, terus dapat prompt sistem</h2>
+              <p class="lead">Peserta masukkan maklumat sistem sendiri. Slide ini akan jana prompt lengkap yang logik dan boleh terus disalin.</p>
+            </div>
+            <div class="prompt-builder-form" aria-label="Soalan untuk membina prompt sistem">
+              <label class="builder-field wide">
+                <span>Nama sistem</span>
+                <input id="system-name-input" data-builder-field type="text" value="Sistem Maklum Balas Pelanggan">
+              </label>
+              <label class="builder-field wide">
+                <span>Tujuan sistem</span>
+                <textarea id="system-purpose-input" data-builder-field>Mengumpul maklum balas pelanggan supaya pemilik sistem boleh menyemak isu, cadangan dan tindakan susulan dengan tersusun.</textarea>
+              </label>
+              <label class="builder-field">
+                <span>Pengguna sistem</span>
+                <input id="system-users-input" data-builder-field type="text" value="Pelanggan dan pemilik perniagaan">
+              </label>
+              <label class="builder-field">
+                <span>URL Apps Script</span>
+                <input id="system-script-url-input" data-builder-field type="text" placeholder="<tampal URL Web App di sini>">
+              </label>
+              <label class="builder-field wide">
+                <span>Ciri utama sistem</span>
+                <textarea id="system-features-input" data-builder-field>Borang hantar maklumat
+Senarai rekod untuk pemilik sistem
+Carian ringkas mengikut nama atau emel
+Mesej status yang sopan selepas data dihantar</textarea>
+              </label>
+              <label class="builder-field wide">
+                <span>Medan data</span>
+                <textarea id="system-fields-input" data-builder-field>name
+email
+phone
+message
+status
+created_at</textarea>
+              </label>
+              <label class="builder-field">
+                <span>Log masuk</span>
+                <select id="system-auth-select" data-builder-field>
+                  <option value="none">Tidak perlu log masuk</option>
+                  <option value="owner">Log masuk untuk pemilik sahaja</option>
+                  <option value="all">Semua pengguna perlu log masuk</option>
+                </select>
+              </label>
+              <label class="builder-field">
+                <span>Terbitkan sistem</span>
+                <select id="system-publish-select" data-builder-field>
+                  <option value="GitHub Pages">GitHub Pages</option>
+                  <option value="Cloudflare Pages">Cloudflare Pages</option>
+                  <option value="GitHub Pages atau Cloudflare Pages">GitHub Pages atau Cloudflare Pages</option>
+                </select>
+              </label>
+            </div>
           </div>
-          <div class="prompt-box">
-            <textarea readonly class="copy-textbox" id="prompt-sistem-penuh">Anda bertindak sebagai pembangun sistem web yang sabar, jelas dan diplomatik.
-
-Saya mahu bina sistem percuma sama seperti contoh kelas, cuma ubah sedikit mengikut keperluan saya.
-
-Bina satu sistem ringkas menggunakan HTML, CSS dan JavaScript sahaja.
-
-Nama sistem:
-<tulis nama sistem di sini>
-
-Tujuan sistem:
-<terangkan tujuan sistem, contohnya sistem maklum balas pelanggan, sistem tempahan bilik, sistem aduan kecil atau sistem senarai tugasan>
-
-Pengguna sasaran:
-<terangkan siapa yang akan menggunakan sistem ini>
-
-Fungsi utama yang saya perlukan:
-1. Halaman form.html untuk pengguna menghantar maklumat.
-2. Halaman view.html untuk pemilik sistem melihat senarai rekod.
-3. Data borang disimpan ke Google Sheets melalui Google Apps Script.
-4. Paparan perlu kemas, moden, mesra telefon dan mudah difahami.
-5. Semua ayat pada sistem mesti menggunakan Bahasa Melayu Malaysia gaya Kuala Lumpur yang tertib dan diplomatik.
-
-Medan data:
-- name
-- email
-- message
-- created_at
-
-Keperluan teknikal:
-- Jangan gunakan rangka kerja seperti React, Vue atau Next.js.
-- Gunakan fail HTML, CSS dan JavaScript biasa sahaja.
-- Untuk POST ke Google Apps Script, gunakan fetch dengan mode no-cors.
-- Jangan tambah headers dan jangan tetapkan Content-Type semasa POST ke Apps Script.
-- Untuk GET, gunakan fetch(URL) biasa dan baca respons JSON.
-- Sediakan kod Google Apps Script yang mempunyai doGet(e) dan doPost(e).
-- doPost(e) mesti menyimpan data ke tab Google Sheets bernama contacts.
-- doGet(e) mesti memulangkan data dalam format JSON.
-- Tulis komen ringkas pada bahagian kod yang penting.
-
-URL_APPS_SCRIPT:
-<tampal URL Web App Google Apps Script di sini>
-
-Hasil akhir yang saya mahu:
-1. Kod lengkap untuk form.html.
-2. Kod lengkap untuk view.html.
-3. Kod lengkap untuk Google Apps Script.
-4. Langkah ringkas untuk sediakan Google Sheets.
-5. Langkah ringkas untuk deploy Apps Script sebagai Web App.
-6. Langkah ringkas untuk terbitkan sistem di GitHub Pages atau Cloudflare Pages.
-
-Pastikan penerangan mudah diikuti oleh pengguna baharu dan jangan guna istilah teknikal yang tidak perlu.</textarea>
+          <div class="prompt-box builder-output">
+            <div class="builder-copy">
+              <strong>Prompt terus untuk copy paste</strong>
+              <button class="copy-button" type="button" data-copy-target="prompt-sistem-penuh">Salin prompt</button>
+            </div>
+            <textarea readonly class="copy-textbox" id="prompt-sistem-penuh" aria-label="Prompt sistem yang dijana"></textarea>
           </div>
         </div>
       </section>
@@ -1583,6 +1747,136 @@ Pastikan penerangan mudah diikuti oleh pengguna baharu dan jangan guna istilah t
       current = Math.min(Math.max(index, 0), slides.length - 1);
       location.hash = `#${current + 1}`;
       render();
+    }
+
+    const builderFieldIds = {
+      name: "system-name-input",
+      purpose: "system-purpose-input",
+      users: "system-users-input",
+      features: "system-features-input",
+      fields: "system-fields-input",
+      auth: "system-auth-select",
+      publish: "system-publish-select",
+      scriptUrl: "system-script-url-input"
+    };
+    const builderFields = Object.values(builderFieldIds)
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+    const promptOutput = document.getElementById("prompt-sistem-penuh");
+
+    function fieldValue(id, fallback) {
+      const field = document.getElementById(id);
+      const value = field?.value?.trim();
+      return value || fallback;
+    }
+
+    function normalizeListInput(value, fallbackItems) {
+      const items = value
+        .split(/\n|,/)
+        .map((item) => item.trim())
+        .filter(Boolean);
+      return items.length ? items : fallbackItems;
+    }
+
+    function formatBulletList(items) {
+      return items.map((item) => `- ${item}`).join("\n");
+    }
+
+    function getAuthInstruction(authMode) {
+      if (authMode === "owner") {
+        return "Tambah login.html untuk pemilik sistem sahaja. Halaman view.html perlu menyemak token dalam localStorage sebelum memaparkan data.";
+      }
+      if (authMode === "all") {
+        return "Tambah login.html sebelum pengguna boleh menghantar atau melihat data. Apps Script perlu menyemak username dan password sebelum memulangkan token sesi.";
+      }
+      return "Tidak perlu log masuk untuk latihan ini. Pastikan halaman view.html tidak memaparkan data sensitif.";
+    }
+
+    function collectBuilderValues() {
+      const features = normalizeListInput(
+        fieldValue(builderFieldIds.features, ""),
+        ["Borang hantar maklumat", "Senarai rekod untuk pemilik sistem", "Mesej status yang sopan selepas data dihantar"]
+      );
+      const fields = normalizeListInput(
+        fieldValue(builderFieldIds.fields, ""),
+        ["name", "email", "message", "created_at"]
+      );
+
+      return {
+        name: fieldValue(builderFieldIds.name, "Sistem Maklum Balas Pelanggan"),
+        purpose: fieldValue(builderFieldIds.purpose, "Mengumpul maklum balas pelanggan supaya pemilik sistem boleh menyemak rekod dengan tersusun."),
+        users: fieldValue(builderFieldIds.users, "Pengguna awam dan pemilik sistem"),
+        features,
+        fields,
+        authInstruction: getAuthInstruction(fieldValue(builderFieldIds.auth, "none")),
+        publishTarget: fieldValue(builderFieldIds.publish, "GitHub Pages"),
+        scriptUrl: fieldValue(builderFieldIds.scriptUrl, "<tampal URL Web App Google Apps Script di sini>")
+      };
+    }
+
+    function buildSystemPrompt(values) {
+      return `Anda bertindak sebagai pembangun sistem web yang sabar, jelas dan diplomatik.
+
+Saya mahu bina sistem percuma sama seperti contoh kelas, cuma ubah sedikit mengikut keperluan saya.
+
+Bina satu sistem ringkas menggunakan HTML, CSS dan JavaScript sahaja.
+
+Nama sistem:
+${values.name}
+
+Tujuan sistem:
+${values.purpose}
+
+Pengguna sistem:
+${values.users}
+
+Fungsi utama yang saya perlukan:
+${formatBulletList(values.features)}
+
+Medan data yang perlu disimpan:
+${formatBulletList(values.fields)}
+
+Logik akses:
+${values.authInstruction}
+
+Keperluan teknikal:
+- Jangan gunakan rangka kerja seperti React, Vue atau Next.js.
+- Gunakan fail HTML, CSS dan JavaScript biasa sahaja.
+- Sediakan form.html untuk pengguna menghantar maklumat.
+- Sediakan view.html untuk pemilik sistem melihat senarai rekod.
+- Simpan data borang ke Google Sheets melalui Google Apps Script.
+- Untuk POST ke Google Apps Script, gunakan fetch dengan mode no-cors.
+- Jangan tambah headers dan jangan tetapkan Content-Type semasa POST ke Apps Script.
+- Untuk GET, gunakan fetch(URL) biasa dan baca respons JSON.
+- Sediakan kod Google Apps Script yang mempunyai doGet(e) dan doPost(e).
+- doPost(e) mesti menyimpan data ke tab Google Sheets bernama contacts.
+- doGet(e) mesti memulangkan data dalam format JSON.
+- Tambah medan created_at secara automatik jika belum dihantar oleh pengguna.
+- Tulis komen ringkas pada bahagian kod yang penting.
+
+URL_APPS_SCRIPT:
+${values.scriptUrl}
+
+Gaya paparan:
+- Gunakan Bahasa Melayu Malaysia gaya Kuala Lumpur.
+- Gunakan ayat yang tertib, diplomatik dan mudah difahami.
+- Reka bentuk mesti kemas, moden, mesra telefon dan sesuai untuk pengguna baharu.
+- Paparkan mesej berjaya dan mesej ralat dengan sopan.
+
+Hasil akhir yang saya mahu:
+1. Kod lengkap untuk form.html.
+2. Kod lengkap untuk view.html.
+3. Kod lengkap untuk Google Apps Script.
+4. Langkah ringkas untuk sediakan Google Sheets.
+5. Langkah ringkas untuk deploy Apps Script sebagai Web App.
+6. Langkah ringkas untuk terbitkan sistem di ${values.publishTarget}.
+
+Pastikan semua langkah logik, mudah diikuti dan jangan guna istilah teknikal yang tidak perlu.`;
+    }
+
+    function updateGeneratedPrompt() {
+      if (!promptOutput) return;
+      promptOutput.value = buildSystemPrompt(collectBuilderValues());
     }
 
     async function copyTextFrom(targetId) {
@@ -1717,6 +2011,11 @@ Pastikan penerangan mudah diikuti oleh pengguna baharu dan jangan guna istilah t
     document.addEventListener("fullscreenchange", updateFullscreenButton);
     document.addEventListener("webkitfullscreenchange", updateFullscreenButton);
 
+    builderFields.forEach((field) => {
+      field.addEventListener("input", updateGeneratedPrompt);
+      field.addEventListener("change", updateGeneratedPrompt);
+    });
+
     document.querySelectorAll("[data-copy-target]").forEach((button) => {
       button.addEventListener("click", () => {
         copyTextFrom(button.dataset.copyTarget);
@@ -1764,6 +2063,7 @@ Pastikan penerangan mudah diikuti oleh pengguna baharu dan jangan guna istilah t
       fullscreenBtn.title = "Skrin penuh tidak disokong";
       fullscreenBtn.setAttribute("aria-label", "Skrin penuh tidak disokong");
     }
+    updateGeneratedPrompt();
     updateFullscreenButton();
     render();
   </script>

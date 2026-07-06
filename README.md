@@ -17,6 +17,7 @@ https://akmal4244.github.io/SlideAkmalV1/
 - GitHub Pages dan Cloudflare Pages untuk penerbitan percuma
 - Kotak teks prompt yang boleh disalin untuk borang, paparan data, log masuk dan prompt sistem penuh
 - Gambar sebenar berkaitan kod, spreadsheet dan ruang kerja pembangunan sebagai sokongan visual
+- Slide interaktif untuk peserta memasukkan nama sistem, tujuan, pengguna, ciri, medan data dan pilihan penerbitan sebelum prompt penuh dijana
 
 ## Sumber Gambar
 
