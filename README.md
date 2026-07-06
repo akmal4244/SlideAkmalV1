@@ -16,6 +16,15 @@ https://akmal4244.github.io/SlideAkmalV1/
 - Google Apps Script sebagai API ringkas
 - GitHub Pages dan Cloudflare Pages untuk penerbitan percuma
 - Kotak teks prompt yang boleh disalin untuk borang, paparan data, log masuk dan prompt sistem penuh
+- Gambar sebenar berkaitan kod, spreadsheet dan ruang kerja pembangunan sebagai sokongan visual
+
+## Sumber Gambar
+
+Gambar sebenar dalam folder `assets` dimuat turun daripada Unsplash untuk kegunaan pembentangan pendidikan:
+
+- Komputer riba dengan kod oleh Daniil Komov
+- Paparan spreadsheet oleh Rodrigo Rodrigues | WOLF ART
+- Ruang kerja kod oleh AltumCode
 
 ## Semakan Tempatan
 

@@ -486,6 +486,7 @@
 
     .content-card,
     .metric-card,
+    .media-card,
     .prompt-box {
       border: 1px solid rgba(15, 76, 129, 0.12);
       border-radius: var(--radius);
@@ -495,6 +496,48 @@
 
     .content-card {
       padding: clamp(18px, 2.2vw, 28px);
+    }
+
+    .media-card {
+      align-self: stretch;
+      min-height: 0;
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+    }
+
+    .real-photo {
+      width: 100%;
+      height: 100%;
+      min-height: 240px;
+      max-height: 430px;
+      display: block;
+      object-fit: cover;
+      filter: saturate(0.98) contrast(1.04);
+    }
+
+    .real-photo.top {
+      object-position: center top;
+    }
+
+    .real-photo-caption {
+      display: grid;
+      gap: 4px;
+      padding: 13px 15px 15px;
+      background: rgba(255, 255, 255, 0.88);
+    }
+
+    .real-photo-caption strong {
+      color: #0b1726;
+      font-size: 0.95rem;
+      line-height: 1.2;
+    }
+
+    .real-photo-caption span {
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.34;
+      font-weight: 700;
     }
 
     .number-list,
@@ -862,6 +905,19 @@
         grid-template-columns: 1fr;
       }
 
+      .media-card {
+        grid-template-rows: minmax(0, 1fr);
+      }
+
+      .real-photo {
+        min-height: 150px;
+        max-height: 190px;
+      }
+
+      .real-photo-caption {
+        display: none;
+      }
+
       .metric-card,
       .flow-step {
         min-height: 0;
@@ -970,13 +1026,13 @@
             <h2 class="slide-title small" id="slide-3-title">Apabila sistem sudah siap di komputer sendiri</h2>
             <p class="lead">Ramai pengguna sudah boleh meminta AI menulis kod. Cabaran sebenar bermula apabila sistem itu perlu menyimpan data dan boleh digunakan oleh orang lain.</p>
           </div>
-          <div class="content-card">
-            <ol class="number-list">
-              <li>Bagaimana hendak meletakkan sistem dalam talian?</li>
-              <li>Di mana data pengguna akan disimpan dengan mudah?</li>
-              <li>Bagaimana hendak berkongsi pautan tanpa membayar pelayan bulanan?</li>
-            </ol>
-          </div>
+          <figure class="media-card">
+            <img class="real-photo" src="assets/photo-workspace-code.jpg" alt="Komputer riba dengan kod sistem di atas meja kerja">
+            <figcaption class="real-photo-caption">
+              <strong>Kod perlu keluar daripada komputer sendiri.</strong>
+              <span>Selepas sistem dijana oleh AI, langkah seterusnya ialah simpan data dan terbitkan pautan awam.</span>
+            </figcaption>
+          </figure>
         </div>
       </section>
 
@@ -1142,14 +1198,13 @@ Keperluan:
             <h2 class="slide-title small" id="slide-10-title">Google Sheets sebagai tempat simpan data</h2>
             <p class="lead">Untuk sistem kecil, Google Sheets mencukupi sebagai pangkalan data ringkas. Ia mudah dibuka, diedit dan dikongsi oleh pemilik sistem.</p>
           </div>
-          <div class="content-card">
-            <ul class="check-list">
-              <li>Baris pertama menjadi nama medan seperti id, nama, emel dan mesej.</li>
-              <li>Setiap baris selepas itu mewakili satu rekod pengguna.</li>
-              <li>Nama tab perlu jelas kerana kod akan merujuk nama tersebut.</li>
-              <li>Sesuai untuk borang, senarai tugasan, tempahan kecil dan alat dalaman.</li>
-            </ul>
-          </div>
+          <figure class="media-card">
+            <img class="real-photo top" src="assets/photo-spreadsheet.jpg" alt="Paparan spreadsheet pada komputer riba">
+            <figcaption class="real-photo-caption">
+              <strong>Setiap baris boleh menjadi satu rekod sistem.</strong>
+              <span>Baris pertama digunakan sebagai nama medan seperti id, name, email, message dan created_at.</span>
+            </figcaption>
+          </figure>
         </div>
       </section>
 
@@ -1225,17 +1280,15 @@ Keperluan:
           <div>
             <p class="slide-kicker">Terbitkan API</p>
             <h2 class="slide-title small" id="slide-14-title">Jadikan Apps Script sebagai Web App</h2>
-            <p class="lead">Selepas kod disimpan, Apps Script perlu diterbitkan sebagai Web App supaya halaman sistem boleh memanggilnya melalui URL HTTPS.</p>
+            <p class="lead">Selepas kod disimpan, Apps Script perlu diterbitkan sebagai Web App supaya halaman sistem boleh memanggilnya melalui URL HTTPS. Gunakan Deploy, New deployment, pilih Web app, tetapkan akses latihan kepada Anyone dan salin URL Web App.</p>
           </div>
-          <div class="content-card">
-            <ul class="check-list">
-              <li>Pilih Deploy, kemudian New deployment.</li>
-              <li>Pilih jenis Web app dan jalankan sebagai akaun sendiri.</li>
-              <li>Tetapkan akses kepada Anyone untuk latihan awam.</li>
-              <li>Salin URL Web App dan simpan untuk dimasukkan ke dalam prompt.</li>
-              <li>Jika kod berubah, buat versi baharu dan deploy semula.</li>
-            </ul>
-          </div>
+          <figure class="media-card">
+            <img class="real-photo" src="assets/photo-code-laptop.jpg" alt="Komputer riba memaparkan kod pada editor">
+            <figcaption class="real-photo-caption">
+              <strong>Apps Script menjadi jambatan kod dan data.</strong>
+              <span>Apabila kod API berubah, buat versi baharu dan deploy semula sebelum uji sistem.</span>
+            </figcaption>
+          </figure>
         </div>
       </section>
 
@@ -1378,48 +1431,63 @@ URL_APPS_SCRIPT=<tampal URL Web App di sini></textarea>
       <section class="slide" aria-labelledby="slide-20-title">
         <div class="slide-content split-layout">
           <div>
-            <p class="slide-kicker">Prompt penuh</p>
+            <p class="slide-kicker">Prompt terus untuk copy paste</p>
             <h2 class="slide-title small" id="slide-20-title">Salin dan tampal untuk minta AI bina sistem</h2>
             <p class="lead">Ini prompt utama untuk mengajar pengguna membina sistem percuma. Peserta hanya perlu ubah nama sistem, medan data dan URL Apps Script.</p>
             <button class="copy-button" type="button" data-copy-target="prompt-sistem-penuh">Salin prompt sistem penuh</button>
           </div>
           <div class="prompt-box">
-            <textarea readonly class="copy-textbox" id="prompt-sistem-penuh">Bina satu sistem ringkas menggunakan HTML, CSS dan JavaScript sahaja.
+            <textarea readonly class="copy-textbox" id="prompt-sistem-penuh">Anda bertindak sebagai pembangun sistem web yang sabar, jelas dan diplomatik.
+
+Saya mahu bina sistem percuma sama seperti contoh kelas, cuma ubah sedikit mengikut keperluan saya.
+
+Bina satu sistem ringkas menggunakan HTML, CSS dan JavaScript sahaja.
+
+Nama sistem:
+<tulis nama sistem di sini>
 
 Tujuan sistem:
-<terangkan tujuan sistem di sini, contohnya sistem maklum balas pelanggan>
+<terangkan tujuan sistem, contohnya sistem maklum balas pelanggan, sistem tempahan bilik, sistem aduan kecil atau sistem senarai tugasan>
 
 Pengguna sasaran:
 <terangkan siapa yang akan menggunakan sistem ini>
 
-Fungsi utama:
-1. Paparkan halaman borang untuk pengguna menghantar maklumat.
-2. Simpan data borang ke Google Sheets melalui Google Apps Script.
-3. Paparkan halaman senarai data untuk pemilik sistem menyemak rekod.
-4. Pastikan reka bentuk kemas, mesra telefon dan mudah difahami.
+Fungsi utama yang saya perlukan:
+1. Halaman form.html untuk pengguna menghantar maklumat.
+2. Halaman view.html untuk pemilik sistem melihat senarai rekod.
+3. Data borang disimpan ke Google Sheets melalui Google Apps Script.
+4. Paparan perlu kemas, moden, mesra telefon dan mudah difahami.
+5. Semua ayat pada sistem mesti menggunakan Bahasa Melayu Malaysia gaya Kuala Lumpur yang tertib dan diplomatik.
 
-Medan data yang diperlukan:
+Medan data:
 - name
 - email
 - message
 - created_at
 
 Keperluan teknikal:
-- Gunakan fail form.html untuk borang.
-- Gunakan fail view.html untuk paparan data.
-- Gunakan fetch() untuk memanggil Google Apps Script.
-- Untuk POST ke Apps Script, gunakan mode no-cors, jangan tambah headers dan jangan tetapkan Content-Type.
+- Jangan gunakan rangka kerja seperti React, Vue atau Next.js.
+- Gunakan fail HTML, CSS dan JavaScript biasa sahaja.
+- Untuk POST ke Google Apps Script, gunakan fetch dengan mode no-cors.
+- Jangan tambah headers dan jangan tetapkan Content-Type semasa POST ke Apps Script.
 - Untuk GET, gunakan fetch(URL) biasa dan baca respons JSON.
+- Sediakan kod Google Apps Script yang mempunyai doGet(e) dan doPost(e).
+- doPost(e) mesti menyimpan data ke tab Google Sheets bernama contacts.
+- doGet(e) mesti memulangkan data dalam format JSON.
 - Tulis komen ringkas pada bahagian kod yang penting.
 
-Gaya bahasa:
-- Gunakan Bahasa Melayu Malaysia.
-- Gunakan ayat yang tertib, diplomatik dan mudah difahami.
-- Elakkan istilah teknikal yang tidak perlu kecuali nama alat seperti Google Sheets, Google Apps Script, GitHub Pages dan Cloudflare Pages.
+URL_APPS_SCRIPT:
+<tampal URL Web App Google Apps Script di sini>
 
-URL_APPS_SCRIPT=<tampal URL Web App di sini>
+Hasil akhir yang saya mahu:
+1. Kod lengkap untuk form.html.
+2. Kod lengkap untuk view.html.
+3. Kod lengkap untuk Google Apps Script.
+4. Langkah ringkas untuk sediakan Google Sheets.
+5. Langkah ringkas untuk deploy Apps Script sebagai Web App.
+6. Langkah ringkas untuk terbitkan sistem di GitHub Pages atau Cloudflare Pages.
 
-Selepas siap, berikan juga langkah ringkas untuk menerbitkan projek ini di GitHub Pages.</textarea>
+Pastikan penerangan mudah diikuti oleh pengguna baharu dan jangan guna istilah teknikal yang tidak perlu.</textarea>
           </div>
         </div>
       </section>
