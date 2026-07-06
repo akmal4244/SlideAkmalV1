@@ -19,6 +19,7 @@ https://akmal4244.github.io/SlideAkmalV1/
 - Gambar sebenar berkaitan kod, spreadsheet dan ruang kerja pembangunan sebagai sokongan visual
 - Slide interaktif untuk peserta memasukkan nama sistem, tujuan, pengguna, ciri, medan data dan pilihan penerbitan sebelum prompt penuh dijana
 - Slide 21 menjana kod Apps Script automatik berdasarkan maklumat slide interaktif, termasuk setup Google Sheets, doGet(e), doPost(e) dan tab data
+- Slide 22 menyediakan panduan mengajar langkah demi langkah supaya peserta faham objektif kelas, aliran sistem dan tindakan selepas setup
 
 ## Sumber Gambar
 

@@ -854,6 +854,90 @@
       line-height: 1.45;
     }
 
+    .teaching-layout {
+      grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr);
+      align-items: stretch;
+    }
+
+    .teaching-panel {
+      min-height: 0;
+      display: grid;
+      align-content: center;
+      gap: 14px;
+    }
+
+    .teaching-note {
+      display: grid;
+      gap: 8px;
+      border: 1px solid rgba(15, 76, 129, 0.12);
+      border-left: 4px solid var(--gold);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.78);
+      padding: 14px 16px;
+      box-shadow: 0 16px 34px rgba(15, 76, 129, 0.08);
+    }
+
+    .teaching-note strong {
+      color: #123154;
+      font-size: 0.95rem;
+      font-weight: 900;
+    }
+
+    .teaching-note span {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.48;
+      font-weight: 690;
+    }
+
+    .lesson-flow {
+      min-height: 0;
+      overflow: auto;
+      display: grid;
+      gap: 9px;
+      padding: 2px 4px 2px 0;
+    }
+
+    .lesson-step {
+      display: grid;
+      grid-template-columns: 36px minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+      border: 1px solid rgba(15, 76, 129, 0.12);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.78);
+      padding: 11px;
+      box-shadow: 0 14px 30px rgba(15, 76, 129, 0.07);
+    }
+
+    .lesson-step > span {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: #ffffff;
+      font-size: 0.86rem;
+      font-weight: 900;
+    }
+
+    .lesson-step strong {
+      display: block;
+      color: #123154;
+      font-size: 0.92rem;
+      line-height: 1.24;
+      font-weight: 900;
+    }
+
+    .lesson-step p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.42;
+      font-weight: 640;
+    }
+
     .prompt-box pre {
       max-height: 190px;
       margin: 0;
@@ -1054,7 +1138,8 @@
       }
 
       .flow-line,
-      .metric-grid {
+      .metric-grid,
+      .teaching-layout {
         grid-template-columns: 1fr;
       }
 
@@ -1093,6 +1178,34 @@
       }
 
       .setup-steps li {
+        padding: 10px;
+      }
+
+      .teaching-layout {
+        grid-template-rows: minmax(0, 1.2fr) minmax(168px, 0.8fr);
+      }
+
+      .teaching-panel {
+        align-content: start;
+        gap: 10px;
+        overflow: auto;
+        padding-right: 2px;
+      }
+
+      .teaching-note {
+        padding: 10px;
+      }
+
+      .teaching-note span {
+        font-size: 0.82rem;
+      }
+
+      .lesson-flow {
+        gap: 8px;
+      }
+
+      .lesson-step {
+        grid-template-columns: 32px minmax(0, 1fr);
         padding: 10px;
       }
 
@@ -1159,7 +1272,7 @@
         <span class="brand-name">SlideAkmalV1</span>
       </div>
       <nav class="slide-dots" id="slideDots" aria-label="Pilih slaid"></nav>
-      <div class="counter-pill" id="slideCounter">1 / 21</div>
+      <div class="counter-pill" id="slideCounter">1 / 22</div>
     </header>
 
     <main class="deck-shell">
@@ -1729,6 +1842,70 @@ created_at</textarea>
               <button class="copy-button" type="button" data-copy-target="apps-script-output">Salin kod</button>
             </div>
             <textarea readonly class="copy-textbox" id="apps-script-output" aria-label="Kod Apps Script yang dijana"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide teaching-slide" aria-labelledby="slide-22-title">
+        <div class="slide-content teaching-layout">
+          <div class="teaching-panel">
+            <div>
+              <p class="slide-kicker">Panduan fasilitator</p>
+              <h2 class="slide-title small" id="slide-22-title">Panduan mengajar langkah demi langkah</h2>
+              <p class="lead">Gunakan slide ini sebagai susunan mengajar. Fokusnya bukan menghafal kod, tetapi membantu peserta faham aliran membina sistem ringkas dengan alat percuma.</p>
+            </div>
+            <div class="teaching-note">
+              <strong>Objektif pembelajaran</strong>
+              <span>Peserta faham bahawa sistem ringkas mempunyai tiga lapisan: paparan pengguna, tempat simpan data, dan Apps Script sebagai penghubung antara kedua-duanya.</span>
+            </div>
+            <div class="teaching-note">
+              <strong>Ayat pembuka yang boleh digunakan</strong>
+              <span>Hari ini kita akan bina sistem kecil secara tersusun. Tuan puan hanya perlu tahu apa masalah yang mahu diselesaikan, kemudian kita gunakan prompt, Google Sheets dan Apps Script untuk menjadikannya berfungsi.</span>
+            </div>
+          </div>
+          <div class="lesson-flow" aria-label="Langkah mengajar peserta">
+            <article class="lesson-step">
+              <span>1</span>
+              <div>
+                <strong>Terangkan hasil akhir</strong>
+                <p>Tunjukkan bahawa peserta akan pulang dengan idea sistem, prompt lengkap, kod Apps Script dan pautan penerbitan yang boleh diuji.</p>
+              </div>
+            </article>
+            <article class="lesson-step">
+              <span>2</span>
+              <div>
+                <strong>Pilih contoh masalah</strong>
+                <p>Minta peserta pilih satu situasi mudah seperti aduan fasiliti, tempahan bilik, rekod pelanggan atau maklum balas program.</p>
+              </div>
+            </article>
+            <article class="lesson-step">
+              <span>3</span>
+              <div>
+                <strong>Demo slide 20</strong>
+                <p>Isi nama sistem, tujuan, pengguna, ciri dan medan data. Tekankan bahawa jawapan yang jelas akan menghasilkan prompt yang lebih kemas.</p>
+              </div>
+            </article>
+            <article class="lesson-step">
+              <span>4</span>
+              <div>
+                <strong>Setup slide 21</strong>
+                <p>Terangkan bahawa kod di slide 21 dijana daripada jawapan slide 20. Salin kod, tampal dalam Apps Script dan jalankan setupSheets.</p>
+              </div>
+            </article>
+            <article class="lesson-step">
+              <span>5</span>
+              <div>
+                <strong>Deploy Web App</strong>
+                <p>Tunjukkan cara deploy Apps Script, salin URL Web App dan tampal semula dalam prompt atau fail sistem yang dibina.</p>
+              </div>
+            </article>
+            <article class="lesson-step">
+              <span>6</span>
+              <div>
+                <strong>Uji dan terbitkan</strong>
+                <p>Hantar satu rekod percubaan, semak data masuk ke Google Sheets, kemudian terbitkan halaman melalui GitHub Pages atau Cloudflare Pages.</p>
+              </div>
+            </article>
           </div>
         </div>
       </section>
